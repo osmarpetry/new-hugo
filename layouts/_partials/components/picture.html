@@ -8,6 +8,7 @@
     class     (string) class on the wrapping <picture>
     imgClass  (string) class on the <img>
     loading   (string) "eager" or "lazy", default "lazy"
+    priority  (string) fetchpriority value; set "high" on the LCP image
     sizes     (string) sizes attribute, default "100vw"
     widths    (slice)  candidate widths, default 480/768/1200/1600
 */ -}}
@@ -16,6 +17,7 @@
 {{- $class := .class | default "" -}}
 {{- $imgClass := .imgClass | default "" -}}
 {{- $loading := .loading | default "lazy" -}}
+{{- $priority := .priority | default "" -}}
 {{- $sizes := .sizes | default "100vw" -}}
 {{- $widths := .widths | default (slice 480 768 1200 1600) -}}
 {{- with resources.Get $src -}}
@@ -51,7 +53,7 @@
       width="{{ $fallback.Width }}"
       height="{{ $fallback.Height }}"
       loading="{{ $loading }}"
-      decoding="async"
+      {{ with $priority }}fetchpriority="{{ . }}" {{ end }}      decoding="async"
       alt="{{ $alt }}"
     />
   </picture>

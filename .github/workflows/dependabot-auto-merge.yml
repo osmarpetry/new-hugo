@@ -12,6 +12,9 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  # Needed by the dispatch below. Without it gh answers
+  # "HTTP 403: Resource not accessible by integration".
+  actions: write
 
 jobs:
   merge:
@@ -22,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Merge the pull request that ci just proved green
+        id: merge
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
@@ -35,12 +39,15 @@ jobs:
                  --jq "map(select(.headRefOid == \"$HEAD_SHA\")) | .[0].number // empty")
           if [ -z "$pr" ]; then
             echo "No open PR at $HEAD_SHA — nothing to merge."
+            echo "merged=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           echo "Merging PR #$pr"
           gh pr merge "$pr" --squash --delete-branch
+          echo "merged=true" >> "$GITHUB_OUTPUT"
 
       - name: Deploy the freshly merged main
+        if: steps.merge.outputs.merged == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}

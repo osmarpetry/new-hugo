@@ -1,0 +1,52 @@
+name: dependabot-auto-merge
+
+# Branch protection is a paid feature on private repositories, so GitHub's own
+# auto-merge cannot be used here: it only exists to unblock a PR that something
+# is holding back, and nothing holds these back. This workflow is the gate
+# instead — it merges only after ci has already reported success.
+on:
+  workflow_run:
+    workflows: [ci]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge:
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.actor.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge the pull request that ci just proved green
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          # workflow_run carries a SHA, not a PR number. Match on it rather than
+          # trusting event.workflow_run.pull_requests, which comes back empty in
+          # more cases than the docs let on.
+          pr=$(gh pr list --state open --json number,headRefOid \
+                 --jq "map(select(.headRefOid == \"$HEAD_SHA\")) | .[0].number // empty")
+          if [ -z "$pr" ]; then
+            echo "No open PR at $HEAD_SHA — nothing to merge."
+            exit 0
+          fi
+          echo "Merging PR #$pr"
+          gh pr merge "$pr" --squash --delete-branch
+
+      - name: Deploy the freshly merged main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          # A push made with GITHUB_TOKEN does not start a workflow run, so the
+          # merge above would otherwise sit on main undeployed. workflow_dispatch
+          # is one of the two events exempt from that rule.
+          gh workflow run ci.yml --ref main

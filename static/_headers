@@ -1,0 +1,18 @@
+# Security headers for Cloudflare Pages. Lighthouse flagged all of these as
+# missing: no HSTS, no frame policy, no COOP.
+#
+# Strict-Transport-Security deliberately omits includeSubDomains. This zone
+# carries subdomains that are not this site — passbolt, weather-7 — and a
+# blanket subdomain policy would speak for them too. Widen it only after every
+# one of them is confirmed HTTPS-only.
+#
+# No Content-Security-Policy here. The page carries an inline GA4 loader, so a
+# useful CSP needs a hash or nonce plumbed through the template; a policy loose
+# enough to allow 'unsafe-inline' would buy nothing.
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), interest-cohort=()

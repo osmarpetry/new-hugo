@@ -119,3 +119,22 @@ test.describe("Paridade de <head> com o build do ssg2", () => {
     ).toHaveAttribute("content", "Osmar Petry");
   });
 });
+
+test.describe("Security headers", () => {
+  test("ships a _headers file with the baseline directives", async ({
+    request,
+  }) => {
+    const res = await request.get("/_headers");
+    expect(res.status()).toBe(200);
+    const body = await res.text();
+    for (const directive of [
+      "Strict-Transport-Security",
+      "X-Content-Type-Options: nosniff",
+      "X-Frame-Options: DENY",
+      "Referrer-Policy",
+      "Cross-Origin-Opener-Policy",
+    ]) {
+      expect(body, directive).toContain(directive);
+    }
+  });
+});

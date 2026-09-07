@@ -1,8 +1,0 @@
-# Netlify pins nothing by itself: without HUGO_VERSION the build image picks
-# whatever Hugo it ships with, which is how a green local build turns red here.
-[build]
-  command = "hugo --gc --minify"
-  publish = "public"
-
-[build.environment]
-  HUGO_VERSION = "0.165.0"

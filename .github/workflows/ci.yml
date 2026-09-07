@@ -19,6 +19,10 @@ env:
   HUGO_VERSION: 0.165.0
 
 jobs:
+  # Hugo is Go. This job installs no Node and runs no JavaScript, so the path
+  # from a merge to the site being live is a Hugo build and an upload, nothing
+  # else. Everything that needs node_modules lives in `test`, which runs beside
+  # this one instead of in front of it.
   build:
     runs-on: ubuntu-latest
     permissions:
@@ -37,6 +41,30 @@ jobs:
       - name: Build
         run: hugo --gc --minify
 
+      - name: Deploy to Cloudflare Pages
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=new-hugo --branch=main
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+  # The gate. Both jobs must pass for a PR to be mergeable, and the auto-merge
+  # workflow waits on the whole `ci` run, so nothing reaches main untested. What
+  # changed is that the tests no longer sit between the merge and the deploy.
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install Hugo
+        run: |
+          curl -sSL -o hugo.deb \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i hugo.deb
+          hugo version
+
       - uses: actions/setup-node@v7
         with:
           node-version: 24
@@ -48,6 +76,8 @@ jobs:
       - name: Install browsers
         run: npx playwright install --with-deps chromium
 
+      # playwright.config.js builds the site itself and serves public/, so this
+      # produces the build that lychee then crawls.
       - name: End-to-end tests
         run: npm run test:e2e
 
@@ -64,14 +94,3 @@ jobs:
           name: playwright-report
           path: test-results
           retention-days: 7
-
-      # Last step on purpose: reaching it means hugo built, every e2e test passed
-      # and lychee found no broken link. Nothing ships that did not clear all three.
-      - name: Deploy to Cloudflare Pages
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        uses: cloudflare/wrangler-action@v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy public --project-name=new-hugo --branch=main
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

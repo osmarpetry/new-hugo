@@ -159,10 +159,13 @@ component in the styleguide.
 
 Present in this repo:
 
-- **`.github/workflows/ci.yml`** — installs the pinned Hugo, builds, runs
-  Playwright, then lychee, then deploys to Cloudflare Pages. The deploy is the
-  last step on purpose: reaching it means all three passed, so nothing ships
-  that did not clear them. It is skipped on pull requests.
+- **`.github/workflows/ci.yml`** — two jobs that run side by side. `build`
+  installs the pinned Hugo, builds, and deploys to Cloudflare Pages; it pulls no
+  Node and runs no JavaScript, because Hugo is Go and the deploy needs nothing
+  else. `test` is where node_modules lives: Playwright, then lychee. Both must
+  pass for a PR to merge, so the suite is still the gate — it just no longer
+  sits between a merge and the site being live. Deploy is skipped on pull
+  requests.
 - **`.github/workflows/dependabot-auto-merge.yml`** — squash-merges a dependabot
   PR once `ci` reports success, then dispatches `ci` on `main`. The dispatch is
   not optional: a push made with `GITHUB_TOKEN` does not start a workflow run,

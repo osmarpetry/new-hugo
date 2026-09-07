@@ -51,3 +51,27 @@ test.describe("Relative note links", () => {
     ).toBeVisible();
   });
 });
+
+test.describe("Post header divider", () => {
+  test("separates the header from the body with a rule, as ssg2 did", async ({
+    page,
+  }) => {
+    await page.goto("/blog/sso-authentication-playbook/");
+    const header = page.locator(".post-page__header");
+    await expect(header).toHaveCount(1);
+
+    const style = await header.evaluate((el) => {
+      const s = getComputedStyle(el);
+      return {
+        width: parseFloat(s.borderBottomWidth),
+        styleName: s.borderBottomStyle,
+        marginBottom: parseFloat(s.marginBottom),
+        paddingBottom: parseFloat(s.paddingBottom),
+      };
+    });
+    expect(style.width).toBeGreaterThan(0);
+    expect(style.styleName).toBe("solid");
+    expect(style.marginBottom).toBeGreaterThan(0);
+    expect(style.paddingBottom).toBeGreaterThan(0);
+  });
+});

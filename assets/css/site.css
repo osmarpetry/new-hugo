@@ -2155,6 +2155,14 @@ li {
     padding-left: 1.25rem;
 }
 
+/* The rule under the title block. The class shipped in the templates but the
+   style did not survive the port from Gatsby, so every post lost its divider. */
+.post-page__header {
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border);
+}
+
 .markdown-prose strong {
     color: var(--text);
 }

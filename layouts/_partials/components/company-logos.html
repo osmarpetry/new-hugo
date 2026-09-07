@@ -1,24 +1,43 @@
 {{- /*
-  Company logo strip. Logos are plain <img>: several are SVG, which Hugo does
-  not process, and all of them are already tiny.
+  Company logo strip.
+
+  The SVGs live in static/ and ship as-is: they are vector, so Hugo has nothing
+  to process. The raster logos live in assets/ and are resized here. They are
+  authored at print resolution — catolica.png is 1376x458 — while the strip
+  renders them at max-height 2rem, so shipping the originals sent ~144 KiB to
+  paint 29 pixels of logo. 64px tall covers a 2x display.
 
   args:
     companies (slice) dicts of "name", "logo", "alt", "width", "height"
 */ -}}
+{{- $displayHeight := 64 -}}
 <section class="section section-companies" id="companies">
   <div class="container">
     <p class="eyebrow eyebrow--center">Some companies I already worked with</p>
     <div class="companies-grid">
       {{- range .companies }}
         <div class="company-item" title="{{ .name }}">
-          <img
-            class="company-item__logo"
-            src="/assets/images/{{ .logo }}"
-            alt="{{ .alt }}"
-            loading="lazy"
-            width="{{ .width }}"
-            height="{{ .height }}"
-          />
+          {{- $asset := resources.Get (printf "images/%s" .logo) -}}
+          {{- if $asset -}}
+            {{- $logo := $asset.Resize (printf "x%d webp" $displayHeight) }}
+            <img
+              class="company-item__logo"
+              src="{{ $logo.RelPermalink }}"
+              alt="{{ .alt }}"
+              loading="lazy"
+              width="{{ $logo.Width }}"
+              height="{{ $logo.Height }}"
+            />
+          {{- else }}
+            <img
+              class="company-item__logo"
+              src="/assets/images/{{ .logo }}"
+              alt="{{ .alt }}"
+              loading="lazy"
+              width="{{ .width }}"
+              height="{{ .height }}"
+            />
+          {{- end }}
         </div>
       {{- end }}
     </div>

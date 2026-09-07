@@ -8,6 +8,8 @@
     backgroundColor (string) hex colour behind the photo
     position        (string) "left" (home, h1) or "right" (about, h2)
     loading         (string) passed to the image, default "eager"
+    priority        (string) fetchpriority; defaults to "high" on the home
+                    hero, empty on the lazy footer hero
 */ -}}
 {{- $position := .position | default "left" -}}
 {{- $isFooterHero := eq $position "right" -}}
@@ -24,6 +26,7 @@
           "class" "hero-media__image-wrap"
           "imgClass" "hero-media__image"
           "loading" (.loading | default "eager")
+          "priority" (.priority | default (cond $isFooterHero "" "high"))
           "sizes" "(min-width: 1200px) 1120px, 100vw"
         ) }}
       </div>

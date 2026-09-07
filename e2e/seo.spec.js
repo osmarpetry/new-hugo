@@ -101,3 +101,21 @@ test.describe("Cloudflare Web Analytics", () => {
     );
   });
 });
+
+test.describe("Paridade de <head> com o build do ssg2", () => {
+  test("declara o locale e o alt da imagem do twitter", async ({ page }) => {
+    await page.goto("/blog/sso-authentication-playbook/");
+
+    await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute(
+      "content",
+      "en_US"
+    );
+    await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute(
+      "content",
+      /preview image$/
+    );
+    await expect(
+      page.locator('meta[name="apple-mobile-web-app-title"]')
+    ).toHaveAttribute("content", "Osmar Petry");
+  });
+});

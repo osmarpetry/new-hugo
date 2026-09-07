@@ -1,0 +1,54 @@
+{{- /*
+  Hero banner.
+
+  args:
+    title           (string)
+    descriptionHtml (string) already-rendered HTML
+    image           (string) path under assets/
+    backgroundColor (string) hex colour behind the photo
+    position        (string) "left" (home, h1) or "right" (about, h2)
+    loading         (string) passed to the image, default "eager"
+*/ -}}
+{{- $position := .position | default "left" -}}
+{{- $isFooterHero := eq $position "right" -}}
+<section
+  class="{{ cond $isFooterHero "hero section hero--footer section-about" "hero section hero--home" }}"
+  id="{{ cond $isFooterHero "about" "intro" }}"
+>
+  <div class="container">
+    <div class="hero-banner hero-banner--{{ $position }}" style="--hero-background-color: {{ .backgroundColor }}">
+      <div class="hero-media">
+        {{ partial "components/picture.html" (dict
+          "src" .image
+          "alt" ""
+          "class" "hero-media__image-wrap"
+          "imgClass" "hero-media__image"
+          "loading" (.loading | default "eager")
+          "sizes" "(min-width: 1200px) 1120px, 100vw"
+        ) }}
+      </div>
+      <div class="hero-card hero-card--{{ $position }}">
+        {{ if $isFooterHero }}<h2>{{ .title }}</h2>{{ else }}<h1>{{ .title }}</h1>{{ end }}
+        <div class="hero-description">{{ .descriptionHtml | safeHTML }}</div>
+        <div class="hero-actions">
+          <a class="action-link action-link--primary" href="{{ site.Params.resumePdf }}" target="_blank" rel="noreferrer">
+            Download resume
+          </a>
+          <div class="hero-socials" aria-label="Social links">
+            {{- range slice
+              (dict "url" site.Params.github "label" "GitHub profile" "icon" "github")
+              (dict "url" site.Params.linkedin "label" "LinkedIn profile" "icon" "linkedin")
+              (dict "url" site.Params.linktree "label" "Linktree" "icon" "linktree") }}
+              <a class="hero-social-link" href="{{ .url }}" target="_blank" rel="noreferrer" aria-label="{{ .label }}">
+                {{ partial "components/icon.html" .icon }}
+              </a>
+            {{- end }}
+          </div>
+        </div>
+        <p class="hero-contact-line">
+          Write to <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+{{- /*
+  Wraps text to a character budget, because images.Text does not wrap. Mirrors
+  the wrapText helper the Gatsby build used, including the ellipsis.
+
+  args:
+    text  (string)
+    chars (int) characters per line
+    lines (int) maximum lines
+*/ -}}
+{{- $lines := slice -}}
+{{- $current := "" -}}
+{{- range (split (.text | strings.TrimSpace | replaceRE `\s+` " ") " ") -}}
+  {{- $candidate := cond (eq $current "") . (printf "%s %s" $current .) -}}
+  {{- if le (len $candidate) $.chars -}}
+    {{- $current = $candidate -}}
+  {{- else -}}
+    {{- with $current }}{{ $lines = $lines | append . }}{{ end -}}
+    {{- $current = . -}}
+  {{- end -}}
+{{- end -}}
+{{- with $current }}{{ $lines = $lines | append . }}{{ end -}}
+{{- $kept := first (math.Min .lines (len $lines)) $lines -}}
+{{- if gt (len $lines) .lines -}}
+  {{- $last := index $kept (sub (len $kept) 1) -}}
+  {{- $kept = append (printf "%s…" (replaceRE `[.,;:!?]$` "" $last)) (first (sub (len $kept) 1) $kept) -}}
+{{- end -}}
+{{- return delimit $kept "\n" -}}

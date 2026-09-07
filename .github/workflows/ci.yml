@@ -1,0 +1,59 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Same version as .dx.json and netlify.toml. Dependabot cannot bump Hugo, so
+  # these three move together by hand.
+  HUGO_VERSION: 0.165.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Hugo
+        run: |
+          curl -sSL -o hugo.deb \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i hugo.deb
+          hugo version
+
+      - name: Build
+        run: hugo --gc --minify
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install the test runner
+        run: npm ci
+
+      - name: Install browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: End-to-end tests
+        run: npm run test:e2e
+
+      - name: Check every link in the built site
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Internal links only: external ones rate-limit and fail at random.
+          args: --offline --no-progress --include-fragments --root-dir ${{ github.workspace }}/public public
+          fail: true
+
+      - uses: actions/upload-artifact@v6
+        if: failure()
+        with:
+          name: playwright-report
+          path: test-results
+          retention-days: 7

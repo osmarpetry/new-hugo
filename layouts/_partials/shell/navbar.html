@@ -1,0 +1,27 @@
+{{- /* Top navigation. Links come from [[menus.main]] in hugo.toml. */ -}}
+<nav class="nav-shell" aria-label="Primary" data-nav>
+  <div class="container nav-inner">
+    <a class="nav-brand" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-nav-links"
+      aria-label="Open navigation"
+      data-nav-toggle
+    >
+      <span class="nav-toggle__line"></span>
+      <span class="nav-toggle__line"></span>
+      <span class="nav-toggle__line"></span>
+    </button>
+    <div class="nav-links" id="primary-nav-links">
+      {{- range site.Menus.main }}
+        <a
+          class="nav-link"
+          href="{{ .URL }}"
+          {{- with .Params.external }} target="_blank" rel="noreferrer"{{ end }}
+        >{{ .Name }}</a>
+      {{- end }}
+    </div>
+  </div>
+</nav>

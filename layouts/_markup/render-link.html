@@ -1,0 +1,38 @@
+{{- /*
+  Link render hook. Four cases:
+    wiki:<slug>   an Obsidian wikilink, rewritten by the prose partial
+    absolute URL  external link, opened in a new tab
+    bare note     an Obsidian relative link such as `bdd.md` or `some-note`
+    anything else passed through unchanged
+
+  Wikilinks and relative note links resolve to the post when it exists, and
+  render as a "page does not exist" marker when it does not.
+*/ -}}
+{{- $text := .Text -}}
+{{- $destination := .Destination -}}
+{{- $url := urls.Parse $destination -}}
+{{- $note := "" -}}
+{{- if strings.HasPrefix $destination "wiki:" -}}
+  {{- $note = strings.TrimPrefix "wiki:" $destination -}}
+{{- else if and (not $url.IsAbs) (not (strings.HasPrefix $destination "/")) (not (strings.HasPrefix $destination "#")) (not (strings.HasPrefix $destination "mailto:")) -}}
+  {{- $note = strings.TrimSuffix ".md" $destination -}}
+{{- end -}}
+{{- if $note -}}
+  {{- with site.GetPage (printf "/posts/%s" $note) -}}
+    <a class="post-inline-link" href="{{ .RelPermalink }}">{{ $text }}</a>
+  {{- else -}}
+    {{- $label := printf "%s. Page does not exist." ($text | plainify) -}}
+    <span
+      class="post-inline-link--missing"
+      aria-label="{{ $label }}"
+      title="Page does not exist."
+      data-tooltip-message="Page does not exist."
+    >{{ $text }}</span>
+  {{- end -}}
+{{- else -}}
+  <a href="{{ $destination | safeURL }}"
+    {{- with .Title }} title="{{ . }}"{{ end }}
+    {{- if $url.IsAbs }} target="_blank" rel="noreferrer"{{ end -}}
+  >{{ $text }}</a>
+{{- end -}}
+{{- /* chomp trailing newline */ -}}

@@ -1,0 +1,36 @@
+{{ define "main" }}
+  <section class="section section-markdown-page">
+    <div class="container">
+      <div class="markdown-prose" data-prose>
+        <div class="post-page__header">
+          <div class="markdown-page__header-copy">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <a class="breadcrumb__link" href="/">Home</a>
+              <span class="breadcrumb__sep" aria-hidden="true">/</span>
+              <a class="breadcrumb__link" href="/blog/">Blog</a>
+              <span class="breadcrumb__sep" aria-hidden="true">/</span>
+              <span
+                class="breadcrumb__current breadcrumb__current--truncate"
+                aria-label="{{ .File.BaseFileName }}"
+                title="{{ .File.BaseFileName }}"
+              >
+                <span class="breadcrumb__current-text">{{ .File.BaseFileName }}</span>
+              </span>
+            </nav>
+            <h1 class="markdown-page__title">{{ .Title }}</h1>
+            {{- with .Description }}<p class="markdown-page__description">{{ . }}</p>{{ end }}
+          </div>
+          <div class="markdown-page__meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            {{- with .Params.tags }}
+              <div class="markdown-page__tags">
+                {{- range . }}<span class="markdown-page__tag">{{ . }}</span>{{ end }}
+              </div>
+            {{- end }}
+          </div>
+        </div>
+        {{ partial "components/prose.html" (dict "markdown" .RenderShortcodes) }}
+      </div>
+    </div>
+  </section>
+{{ end }}

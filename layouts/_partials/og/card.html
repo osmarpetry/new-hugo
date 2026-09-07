@@ -1,0 +1,31 @@
+{{- /*
+  Builds the social card for a page and returns the image resource.
+
+  Same recipe the Gatsby build used with sharp: the hero photo cropped to
+  1200x630, a dark gradient (assets/images/og/overlay.png, pre-rendered because
+  Hugo cannot draw gradients), then the eyebrow, title and description drawn on
+  top. Results are cached, so a rebuild does not redo the work.
+
+  args:
+    eyebrow     (string) small uppercase label
+    title       (string)
+    description (string)
+*/ -}}
+{{- $hero := resources.Get "images/hero/osmar-hero.jpg" -}}
+{{- $overlay := resources.Get "images/og/overlay.png" -}}
+{{- $serif := resources.Get "fonts/Tinos-Bold.ttf" -}}
+{{- $sans := resources.Get "fonts/Inter-Regular.ttf" -}}
+{{- if not (and $hero $overlay $serif $sans) -}}
+  {{- errorf "og/card: missing the hero image, the overlay or a font" -}}
+{{- end -}}
+{{- $eyebrow := upper .eyebrow -}}
+{{- $title := partial "og/wrap.html" (dict "text" .title "chars" 28 "lines" 3) -}}
+{{- $description := partial "og/wrap.html" (dict "text" (.description | plainify) "chars" 48 "lines" 3) -}}
+{{- $card := $hero.Fill "1200x630 jpeg q84 Center" -}}
+{{- $card = $card.Filter
+  (images.Overlay $overlay 0 0)
+  (images.Text $eyebrow (dict "font" $sans "size" 22 "color" "#F7F3ED" "x" 80 "y" 62))
+  (images.Text $title (dict "font" $serif "size" 60 "color" "#FFFFFF" "linespacing" 8 "x" 60 "y" 330))
+  (images.Text $description (dict "font" $sans "size" 28 "color" "#F2EFEA" "linespacing" 10 "x" 64 "y" 505))
+-}}
+{{- return $card -}}

@@ -1,0 +1,20 @@
+title: Component preview — company logos
+partial: components/company-logos.html
+notes: The whole strip, as it appears on the home page.
+args:
+  companies:
+    - name: Cyberr
+      logo: company-logos/cyber.svg
+      alt: Cyberr logo
+      width: 84
+      height: 26
+    - name: Zup
+      logo: company-logos/zup.png
+      alt: Zup logo
+      width: 512
+      height: 168
+    - name: Totvs
+      logo: company-logos/totvs.png
+      alt: Totvs logo
+      width: 512
+      height: 132

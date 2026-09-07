@@ -1,0 +1,13 @@
+{{- /*
+  Renders markdown to HTML, resolving Obsidian wikilinks on the way.
+
+  `[[slug|Label]]` becomes a `wiki:slug` link, which layouts/_markup/render-link.html
+  turns into a real link when the post exists and into a "page does not exist"
+  marker when it does not. Authors keep writing plain Obsidian syntax.
+
+  args:
+    markdown (string) raw markdown
+*/ -}}
+{{- $markdown := .markdown -}}
+{{- $resolved := replaceRE `\[\[([^|\]]+)\|([^\]]+)\]\]` `[$2](wiki:$1)` $markdown -}}
+{{- page.RenderString (dict "display" "block") $resolved -}}

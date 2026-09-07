@@ -1,0 +1,35 @@
+{{ define "main" }}
+  {{- /*
+    Markdown page at the content root. content/resume.md is deliberately kept
+    without front matter: it is the single source the site page, the PDF script
+    and github.com/osmarpetry/dns-cv all read, so it must stay verbatim.
+  */ -}}
+  {{- $isResume := eq .File.BaseFileName "resume" -}}
+  <section class="section section-markdown-page">
+    <div class="container">
+      {{ partial "components/breadcrumb.html" (dict
+        "trail" (slice (dict "name" "Home" "url" "/"))
+        "current" (cond $isResume "Resume" .Title)
+      ) }}
+      <div class="markdown-prose{{ if $isResume }} resume-prose{{ end }}">
+        {{- if $isResume }}
+          <a
+            class="resume-pdf-btn"
+            href="{{ site.Params.resumePdf }}"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Download resume as PDF"
+            title="Download PDF"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1v10m0 0L4.5 7.5M8 11l3.5-3.5M2 13h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span class="resume-pdf-btn__label">Download resume</span>
+          </a>
+        {{- end }}
+        {{ partial "components/prose.html" (dict "markdown" .RenderShortcodes) }}
+      </div>
+    </div>
+  </section>
+  {{- if $isResume }}{{ partial "resume/publish-raw.html" . }}{{ end }}
+{{ end }}

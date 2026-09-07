@@ -1,0 +1,15 @@
+title: Component preview — posts filter
+partial: components/posts-filter.html
+notes: Each chip is a link to a tag page, so the filter needs no JavaScript.
+args:
+  status: 5 posts in testing
+  chips:
+    - name: All posts
+      url: /blog/
+      active: false
+    - name: testing
+      url: /tags/testing/
+      active: true
+    - name: golang
+      url: /tags/golang/
+      active: false

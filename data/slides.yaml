@@ -1,0 +1,184 @@
+# Presentation decks, newest first. Asset paths are derived from the slug in
+# the slide components, so no path is repeated here.
+profileUrl: https://www.slideshare.net/OsmarPetry
+featured:
+  - testes-em-integrao-contnua
+  - biblioteca-reactquery
+  - publicar-pacote-npm-na-zup
+all:
+  - slug: testes-em-integrao-contnua
+    title: Testing in Continuous Integration
+    description: Presentation about testing in continuous integration, shared through the Cubuca ritual of frontend developers.
+    url: https://pt.slideshare.net/slideshow/testes-em-integrao-contnua/242857822
+    topics:
+      - Testing
+      - CI/CD
+  - slug: biblioteca-reactquery
+    title: React Query Library
+    description: Presentation about React Query, shared through the Fishbowl ritual of frontend developers.
+    url: https://pt.slideshare.net/slideshow/biblioteca-reactquery/242857821
+    topics:
+      - React Query
+      - Frontend
+  - slug: publicar-pacote-npm-na-zup
+    title: Publishing an NPM Package at Zup
+    description: Presentation about how to publish NPM packages at Zup, shared through the Cubuca ritual of frontend developers.
+    url: https://pt.slideshare.net/slideshow/publicar-pacote-npm-na-zup/242857820
+    topics:
+      - NPM
+      - Frontend
+      - Zup
+  - slug: imagetopdf-5-242857819
+    title: Introduction to React
+    description: Introductory presentation about React. I presented it in a way that would not scare beginners.
+    url: https://pt.slideshare.net/slideshow/imagetopdf-5-242857819/242857819
+    topics:
+      - React
+      - Frontend
+  - slug: observables-rxjs
+    title: Observables RxJS
+    description: Presentation about RxJS observables, shared through the Cubuca ritual of frontend developers.
+    url: https://pt.slideshare.net/slideshow/observables-rxjs/242857818
+    topics:
+      - RxJS
+      - Frontend
+  - slug: flutter-242857817
+    title: Flutter
+    description: Presentation about Flutter, shared through the Cubuca ritual of frontend developers.
+    url: https://pt.slideshare.net/slideshow/flutter-242857817/242857817
+    topics:
+      - Flutter
+      - Frontend
+  - slug: design-tokens
+    title: Design Tokens
+    description: Presentation about design tokens, shared through the Cubuca ritual of frontend developers.
+    url: https://pt.slideshare.net/slideshow/design-tokens/242857816
+    topics:
+      - Design Tokens
+      - Frontend
+  - slug: design-patterns-242857815
+    title: Design Patterns
+    description: Presentation about design patterns.
+    url: https://pt.slideshare.net/slideshow/design-patterns-242857815/242857815
+    topics:
+      - Design Patterns
+      - Software Engineering
+  - slug: aulo-iniciante-de-programao-com-clojure
+    title: Beginner Programming with Clojure Workshop
+    description: Basic introduction to functional programming through a functional language.
+    url: https://pt.slideshare.net/slideshow/aulo-iniciante-de-programao-com-clojure/242857146
+    topics:
+      - Clojure
+      - Functional Programming
+  - slug: aulo-iniciante-de-clojure-rest
+    title: Beginner Clojure REST Workshop
+    description: Basic introduction to functional programming through a functional language.
+    url: https://pt.slideshare.net/slideshow/aulo-iniciante-de-clojure-rest/242857145
+    topics:
+      - Clojure
+      - REST
+  - slug: aulo-iniciante-de-programao-funcional
+    title: Beginner Functional Programming Workshop
+    description: Basic introduction to functional programming through a functional language.
+    url: https://pt.slideshare.net/slideshow/aulo-iniciante-de-programao-funcional/242857055
+    topics:
+      - Functional Programming
+      - Workshop
+  - slug: matemtica-discreta-cdigo-de-hamming
+    title: "Discrete Mathematics: Hamming Code"
+    description: Presentation created for the discrete mathematics course in the Information Systems program for professor Jaisson dos Reis at Catolica Jaragua do Sul.
+    url: https://pt.slideshare.net/slideshow/matemtica-discreta-cdigo-de-hamming/148034725
+    topics:
+      - Discrete Math
+      - Hamming Code
+  - slug: probabilidade-e-estatstica-regresso-linear-quadrtica-e-exponencial
+    title: "Probability and Statistics: Linear, Quadratic, and Exponential Regression"
+    description: Presentation created for the probability and statistics course in the Information Systems program for professor Jaisson dos Reis at Catolica Jaragua do Sul.
+    url: https://pt.slideshare.net/slideshow/probabilidade-e-estatstica-regresso-linear-quadrtica-e-exponencial/148034390
+    topics:
+      - Statistics
+      - Regression
+      - R
+  - slug: matemtica-computacional-clculo-de-reas-usando-integrais
+    title: "Computational Mathematics: Area Calculation Using Integrals"
+    description: Presentation created for the computational mathematics course in the Information Systems program for professor Jaisson dos Reis at Catolica Jaragua do Sul.
+    url: https://pt.slideshare.net/slideshow/matemtica-computacional-clculo-de-reas-usando-integrais/148034022
+    topics:
+      - Mathematics
+      - Integrals
+  - slug: gerenciamento-de-continuidade-e-disponibilidade-na-itil-v3-2011-verso-atual
+    title: Continuity and Availability Management in ITIL v3 2011 (Current Version)
+    description: Presentation about ITIL in the eighth semester of the Information Systems bachelor's program.
+    url: https://pt.slideshare.net/slideshow/gerenciamento-de-continuidade-e-disponibilidade-na-itil-v3-2011-verso-atual/126404311
+    topics:
+      - ITIL
+      - Service Management
+  - slug: gesto-de-conhecimento-126404245
+    title: Knowledge Management
+    description: Presentation about knowledge management in the eighth semester of the Information Systems bachelor's program.
+    url: https://pt.slideshare.net/slideshow/gesto-de-conhecimento-126404245/126404245
+    topics:
+      - Knowledge Management
+      - Information Systems
+  - slug: raspberry-pi-102446689
+    title: Raspberry Pi
+    description: Presentation about Raspberry Pi and IoT in the seventh semester of the Information Systems bachelor's program.
+    url: https://pt.slideshare.net/slideshow/raspberry-pi-102446689/102446689
+    topics:
+      - Raspberry Pi
+      - IoT
+      - Automation
+  - slug: ferramenta-ghost-cms
+    title: Ghost CMS Tool
+    description: Presentation about the Ghost CMS tool, developed in the sixth semester of the Information Systems bachelor's program.
+    url: https://www.slideshare.net/slideshow/ferramenta-ghost-cms/91064848
+    topics:
+      - Ghost
+      - CMS
+      - Node.js
+  - slug: process-mining-process-discovery-and-prediction
+    title: Process Mining, Process Discovery, and Prediction
+    description: Seminar developed in the fifth semester of the Information Systems bachelor's program, for a course taught by Cleiton Garcia.
+    url: https://pt.slideshare.net/slideshow/process-mining-process-discovery-and-prediction/80814893
+    topics:
+      - Process Mining
+      - BPM
+      - ERP
+  - slug: integrao-contnua-com-maven-e-jenkins
+    title: Continuous Integration with Maven and Jenkins
+    description: Seminar developed in the fourth semester of the Information Systems bachelor's program, for the Programming 5 course taught by Leonardo Vitazik Neto.
+    url: https://pt.slideshare.net/slideshow/integrao-contnua-com-maven-e-jenkins/80814826
+    topics:
+      - Maven
+      - Jenkins
+      - CI/CD
+  - slug: nosql-mongodb-e-mean
+    title: NoSQL, MongoDB, and MEAN
+    description: Seminar developed in the fourth semester of the Information Systems bachelor's program, for the Database Systems 2 course taught by Leonardo Vitazik Neto.
+    url: https://pt.slideshare.net/slideshow/nosql-mongodb-e-mean/69650343
+    topics:
+      - NoSQL
+      - MongoDB
+      - MEAN
+  - slug: cobit-5-seminrio
+    title: COBIT 5 | Seminar
+    description: Seminar developed in the fourth semester of the Information Systems bachelor's program, for the Process Engineering and Requirements course taught by Fabio Dippold.
+    url: https://pt.slideshare.net/slideshow/cobit-5-seminrio/69650163
+    topics:
+      - COBIT
+      - IT Governance
+  - slug: seminrio-java-microservices
+    title: Java Microservices | Seminar
+    description: Seminar developed in the fourth semester of the Information Systems bachelor's program, for the Programming 4 course taught by Fabio Dippold.
+    url: https://pt.slideshare.net/slideshow/seminrio-java-microservices/68076106
+    topics:
+      - Java
+      - Microservices
+  - slug: seminrio-asp-net-core-angular-2-e-typescript-com-scaffolding-yeoman
+    title: ASP.NET Core, Angular 2, and TypeScript with Yeoman Scaffolding | Seminar
+    description: Seminar developed in the fourth semester of the Information Systems bachelor's program, for the Programming Technology 2 course taught by Cleiton Garcia.
+    url: https://pt.slideshare.net/slideshow/seminrio-asp-net-core-angular-2-e-typescript-com-scaffolding-yeoman/68075910
+    topics:
+      - ASP.NET Core
+      - Angular
+      - TypeScript

@@ -1,0 +1,23 @@
+{{ define "main" }}
+  <section class="section section-not-found">
+    <div class="container">
+      {{ partial "components/breadcrumb.html" (dict
+        "trail" (slice (dict "name" "Home" "url" "/"))
+        "current" "404"
+      ) }}
+      <div class="not-found-card">
+        <p class="eyebrow">404</p>
+        <h1 class="not-found-title">Page not found.</h1>
+        <p class="not-found-description">
+          The route you tried does not exist or is no longer available. Use one of
+          the actions below to get back to the landing page or return to the
+          previous screen.
+        </p>
+        <div class="not-found-actions">
+          <a class="action-link action-link--primary-page" href="/">Back to landing page</a>
+          <button class="action-link action-link--ghost-page" type="button" data-go-back>Go back</button>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

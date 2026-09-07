@@ -1,0 +1,29 @@
+title: Component preview — tier section
+partial: components/tier-section.html
+notes: Composes project cards, the text-only list and the CTA. Used by the home preview and the projects page.
+args:
+  id: styleguide-tier
+  eyebrow: Independent work
+  title: Projects, experiments, and assessments.
+  description: Selected self-directed builds kept separate from professional company work.
+  ctaUrl: /projects/
+  ctaLabel: See all independent projects
+  projects:
+    - slug: roast-my-landing
+      title: Roast My Landing
+      summary: Landing page critique tool.
+      stack:
+        - Next.js
+      links:
+        - label: GitHub
+          url: https://github.com/osmarpetry/roast-my-landing
+  listProjects:
+    - slug: todo
+      summary: Small todo application kept as a reference build.
+      repos:
+        - todo
+      stack:
+        - React
+      links:
+        - label: GitHub
+          url: https://github.com/osmarpetry/todo

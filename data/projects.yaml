@@ -1,0 +1,714 @@
+# Projects. `image: true` means a cover screenshot exists under
+# assets/images/screenshots/projects/<slug>/cover.png and the project is
+# rendered as a card; the rest render as rows in the text-only list.
+- slug: jeff-next
+  title: Jeff
+  tier: 1
+  summary: White-label platform for marketing and scheduling professional services, with therapy as the default vertical and company-funded credits for workers.
+  stack:
+    - Next.js 16
+    - React 19
+    - Drizzle
+    - Playwright
+  repos:
+    - jeff-next
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/jeff-next
+  image: true
+- slug: echo-coach-lingue
+  title: Echo Coach Lingue
+  tier: 1
+  summary: Language-learning typing trainer with custom Markdown practice, TTS listening, typing-speed benchmarking, and pronunciation context links through Forvo and YouGlish.
+  stack:
+    - React
+    - Vite
+    - Material UI
+    - Tailwind CSS
+  repos:
+    - echo-coach-lingue
+  links:
+    - label: Live
+      url: https://charming-twilight-c65b0b.netlify.app/
+    - label: GitHub
+      url: https://github.com/osmarpetry/echo-coach-lingue
+  image: true
+- slug: portfolio-gatsby-v1
+  title: Portfolio Gatsby V1
+  tier: 1
+  summary: First Gatsby portfolio and blog version for Osmar Petry, preserved as an archive of the earlier personal site implementation.
+  stack:
+    - Gatsby
+    - React
+    - Styled Components
+    - Decap CMS
+  repos:
+    - portfolio-gatsby-v1
+  links:
+    - label: Live
+      url: https://osmarpetryme.netlify.app/
+    - label: GitHub
+      url: https://github.com/osmarpetry/portfolio-gatsby-v1
+  image: true
+- slug: portifolio-eleventry
+  title: Portifolio Eleventy
+  tier: 1
+  summary: Static-first portfolio build using Eleventy, Markdown-oriented content, syntax highlighting, and a small deployment surface.
+  stack:
+    - Eleventy
+    - Markdown
+    - Shiki
+    - CSS
+  repos:
+    - portifolio-eleventry
+  links:
+    - label: Live
+      url: https://portifolio-eleventry.netlify.app/
+    - label: GitHub
+      url: https://github.com/osmarpetry/portifolio-eleventry
+  image: true
+- slug: roast-my-landing
+  title: Roast My Landing
+  tier: 1
+  summary: Landing-page audit app that reviews a website and returns three focused tips across marketing, SEO, and performance.
+  stack:
+    - Next.js 16
+    - Lighthouse
+    - OpenAI
+    - Postgres
+  repos:
+    - roast-my-landing
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/roast-my-landing
+  image: true
+- slug: portifolio-notion
+  title: Portifolio Notion
+  tier: 1
+  summary: Notion-powered portfolio based on nextjs-notion-starter-kit, rendering a public Notion page through Next.js and react-notion-x.
+  stack:
+    - Next.js
+    - Notion
+    - react-notion-x
+    - TypeScript
+  repos:
+    - portifolio-notion
+  links:
+    - label: Notion Page
+      url: https://osmarpetry.notion.site/Osmar-Petry-8f6838e556644537b51e658d1645d917?pvs=74
+    - label: GitHub
+      url: https://github.com/osmarpetry/portifolio-notion
+  image: true
+- slug: chargebee-brevo-sync
+  title: Chargebee Brevo Sync
+  tier: 1
+  summary: Webhook-driven billing and CRM sync demo built around Chargebee events, Brevo contact updates, and a stateless Next.js flow.
+  stack:
+    - Next.js 15
+    - TypeScript
+    - Vitest
+    - Playwright
+  repos:
+    - chargebee-brevo-sync
+  links:
+    - label: Live
+      url: https://demo.osmarpetry.dev
+    - label: GitHub
+      url: https://github.com/osmarpetry/chargebee-brevo-sync
+  image: true
+- slug: citadel-character-atlas
+  title: Citadel Character Atlas
+  tier: 1
+  summary: Responsive Rick and Morty API character browser with GraphQL search, filters, pagination, localization, and a detail drawer.
+  stack:
+    - Next.js 15
+    - GraphQL
+    - Storybook
+    - Playwright
+  repos:
+    - citadel-character-atlas
+  links:
+    - label: Live
+      url: https://rick-et-morty-2025.netlify.app/
+    - label: GitHub
+      url: https://github.com/osmarpetry/citadel-character-atlas
+  image: true
+- slug: flowers-city
+  title: Flowers City
+  tier: 1
+  summary: Map-first store locator concept focused on place context, clean frontend structure, and location-driven browsing.
+  stack:
+    - Next.js 15
+    - Leaflet
+    - TypeScript
+    - Tailwind CSS
+  repos:
+    - flowers-city
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/flowers-city
+  image: true
+- slug: my-accounts
+  title: My Accounts
+  tier: 1
+  summary: Account management interface with mocked APIs, transfers, theming, i18n, and realistic application state flows.
+  stack:
+    - Next.js 15
+    - Redux Toolkit
+    - MSW
+    - Playwright
+  repos:
+    - my-accounts
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/my-accounts
+  image: true
+- slug: felippe
+  title: Felippe
+  tier: 1
+  summary: Content product with auth, comments, and playlist-style interaction patterns shaped around product rules and sign-in flows.
+  stack:
+    - Next.js 15
+    - Auth.js v5
+    - Tailwind CSS
+    - Biome
+  repos:
+    - felippe
+  links:
+    - label: Live
+      url: https://felippex.netlify.app/
+    - label: GitHub
+      url: https://github.com/osmarpetry/felippe
+  image: true
+- slug: speach-poc
+  title: Speach POC
+  tier: 1
+  summary: Chrome extension prototype for converting selected text and extracted articles into a guided reading experience.
+  stack:
+    - WXT
+    - React
+    - TypeScript
+    - Playwright
+  repos:
+    - speach-poc
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/speach-poc
+  image: true
+- slug: earth-1999
+  title: Earth 1999
+  tier: 1
+  summary: Marvel browser from 2018 with BDD tests, Storybook habits, and Firebase deployment kept live as an earlier frontend milestone.
+  stack:
+    - React
+    - TypeScript
+    - Firebase
+    - Cypress
+  repos:
+    - earth-1999
+  links:
+    - label: Live
+      url: https://earth-19999.web.app
+    - label: GitHub
+      url: https://github.com/osmarpetry/earth-1999
+  image: true
+- slug: animation-principles-explorer
+  title: Animation Principles Explorer
+  tier: 1
+  summary: Interactive animation sandbox combining a React UI with Gemini-backed guidance around motion principles and demos.
+  stack:
+    - React
+    - Vite
+    - Gemini API
+    - TypeScript
+  repos:
+    - animation-principles-explorer
+  links:
+    - label: Live
+      url: https://animation-principles-explorer.vercel.app/
+    - label: GitHub
+      url: https://github.com/osmarpetry/animation-principles-explorer
+  image: true
+- slug: goodread
+  title: media2goodreads
+  tier: 1
+  summary: Go application that imports Audible, Kindle, and Storytel history into a unified library and exports a Goodreads-compatible CSV.
+  stack:
+    - Go
+    - CLI
+    - TUI
+    - CSV tooling
+  repos:
+    - goodread
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/goodread
+    - label: Docs
+      url: https://github.com/osmarpetry/goodread/blob/main/TUI_USAGE.md
+  image: true
+- slug: moneylion-demo
+  title: MoneyLion Demo
+  tier: 2
+  summary: Timeline rendering and API normalization split across a Next.js frontend and a Node.js backend for the MoneyLion assessment.
+  stack:
+    - Next.js
+    - TypeScript
+    - Node.js
+    - Material UI
+  repos:
+    - lion-fe
+    - lion-be
+  links:
+    - label: Live
+      url: https://lion-fe.vercel.app/timeline
+    - label: GitHub Frontend
+      url: https://github.com/osmarpetry/lion-fe
+    - label: GitHub Backend
+      url: https://github.com/osmarpetry/lion-be
+  image: true
+- slug: bater-horas2
+  title: Bater Horas 2
+  tier: 2
+  summary: React time-tracking interface centered on daily logging, date handling, and straightforward product flow.
+  stack:
+    - React
+    - TypeScript
+    - date-fns
+  repos:
+    - bater-horas2
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/bater-horas2
+- slug: lumdb
+  title: Lumdb
+  tier: 2
+  summary: Firebase-hosted movie browser that shows earlier product UI decisions around search, browsing, and PWA structure.
+  stack:
+    - React
+    - Redux
+    - Firebase
+    - PWA
+  repos:
+    - lumdb
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/lumdb
+    - label: Live
+      url: https://lumdb-spa.netlify.app/
+  image: true
+- slug: horas
+  title: Horas
+  tier: 2
+  summary: Legacy Java backend for time tracking with REST endpoints, Maven build tooling, and a MySQL-oriented stack.
+  stack:
+    - Java
+    - Maven
+    - MySQL
+    - Tomcat
+  repos:
+    - horas
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/horas
+- slug: tokens-figma-node
+  title: Tokens Figma Node
+  tier: 2
+  summary: Node utility for turning design-token exports into code-friendly outputs and bridging Figma with implementation.
+  stack:
+    - Node.js
+    - CLI
+    - Design Tokens
+    - Figma
+  repos:
+    - tokens-figma-node
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/tokens-figma-node
+  image: true
+- slug: black-spotify
+  title: Black Spotify
+  tier: 2
+  summary: Spotify-inspired browser from an earlier phase of the portfolio, preserved to show progression in app UI structure.
+  stack:
+    - React
+    - Redux
+    - Firebase
+    - Cypress
+  repos:
+    - black-spotify
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/black-spotify
+  image: true
+- slug: weather-7
+  title: Weather 7
+  tier: 2
+  summary: Cinematic weather dashboard built with Next.js, server-side location resolution, and National Weather Service data for forecast, alerts, and observation views.
+  stack:
+    - Next.js
+    - TypeScript
+    - SWR
+    - Styled Components
+  repos:
+    - weather-7
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/weather-7
+    - label: Live
+      url: https://weather7-osmar.netlify.app/
+  image: true
+- slug: infractions-hawaii
+  title: Infractions Hawaii
+  tier: 2
+  summary: Traffic infraction lookup interface for Hawaii focused on filtering, search, and data-heavy frontend flows.
+  stack:
+    - React
+    - TypeScript
+  repos:
+    - infractions-hawaii
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/infractions-hawaii
+- slug: forum
+  title: Forum API
+  tier: 2
+  summary: Spring Boot forum API built as an early backend learning project, with topic endpoints, Swagger docs, and actuator-related admin concerns.
+  stack:
+    - Java
+    - Spring Boot
+    - Maven
+    - Swagger
+  repos:
+    - forum
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/forum
+- slug: forum-springbootadmin
+  title: Forum Spring Boot Admin
+  tier: 2
+  summary: Spring Boot admin layer for the forum stack, focused on management and service monitoring concerns.
+  stack:
+    - Spring Boot
+    - Java
+    - Spring Boot Admin
+  repos:
+    - forum-springbootadmin
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/forum-springbootadmin
+- slug: quizzler-flutter
+  title: Quizzler Flutter
+  tier: 3
+  summary: Flutter quiz app exploring cross-platform mobile structure, Dart, and basic game-style interaction loops.
+  stack:
+    - Flutter
+    - Dart
+  repos:
+    - quizzler-flutter
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/quizzler-flutter
+- slug: bootstrap-resposive-site
+  title: Bootstrap Responsive Site
+  tier: 3
+  summary: Responsive site exercise built with Bootstrap to explore grid behavior, layout primitives, and component reuse.
+  stack:
+    - HTML
+    - CSS
+    - Bootstrap
+  repos:
+    - bootstrap-resposive-site
+  links:
+    - label: Live
+      url: https://incandescent-puppy-fff2fc.netlify.app/
+    - label: GitHub
+      url: https://github.com/osmarpetry/bootstrap-resposive-site
+  image: true
+- slug: custom-mui-drawer
+  title: Custom MUI Drawer
+  tier: 3
+  summary: Custom Material UI drawer component with extended interaction behavior and theming support.
+  stack:
+    - React
+    - Material UI
+    - TypeScript
+  repos:
+    - CustomMuiDrawer
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/CustomMuiDrawer
+- slug: docker-react
+  title: Docker React
+  tier: 3
+  summary: React app containerized with Docker to explore multi-stage builds and deployable frontend packaging.
+  stack:
+    - React
+    - Docker
+    - CI/CD
+  repos:
+    - docker-react
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/docker-react
+- slug: fotograf
+  title: Fotograf
+  tier: 3
+  summary: Media-heavy photography presentation exploring gallery-like layouts and visual-first browsing.
+  stack:
+    - React
+  repos:
+    - fotograf
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/fotograf
+    - label: Live
+      url: https://fotograf-poc.netlify.app/services
+  image: true
+- slug: lumdb-nextjs
+  title: Lumdb Next.js
+  tier: 3
+  summary: Next.js port of Lumdb that shifts the movie browser toward a more server-rendered application structure.
+  stack:
+    - Next.js
+    - TypeScript
+  repos:
+    - lumdb-nextjs
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/lumdb-nextjs
+  image: true
+- slug: nvim-configuration
+  title: Neovim Configuration
+  tier: 3
+  summary: Personal Neovim setup with plugins, LSP, and workflow choices oriented around day-to-day development speed.
+  stack:
+    - Vimscript
+    - Neovim
+    - vim-plug
+  repos:
+    - nvim-configuration
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/nvim-configuration
+- slug: personal-blog-gatsby-trash
+  title: Personal Blog (Gatsby)
+  tier: 3
+  summary: Gatsby blog prototype kept as an archive of earlier content-site experiments and implementation choices.
+  stack:
+    - Gatsby
+    - React
+    - GraphQL
+  repos:
+    - personal-blog-gatsby-trash
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/personal-blog-gatsby-trash
+- slug: pirataflix
+  title: Pirataflix
+  tier: 3
+  summary: Streaming UI concept exploring media browsing and Netflix-style content presentation patterns.
+  stack:
+    - React
+    - CSS
+  repos:
+    - pirataflix
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/pirataflix
+- slug: pirataflix2
+  title: Pirataflix 2
+  tier: 3
+  summary: Second iteration of the Pirataflix concept with a cleaner structure and updated implementation approach.
+  stack:
+    - React
+    - TypeScript
+  repos:
+    - pirataflix2
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/pirataflix2
+- slug: portifolio
+  title: Portfolio Site
+  tier: 3
+  summary: The current Eleventy-based portfolio site, including the data model, sections, and design-system-like building blocks.
+  stack:
+    - Eleventy
+    - Nunjucks
+    - CSS
+  repos:
+    - Portifolio
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/Portifolio
+- slug: react-hook-ts-poc
+  title: React Hook TS POC
+  tier: 3
+  summary: Proof of concept exploring React hooks patterns with TypeScript for state and side-effect modeling.
+  stack:
+    - React
+    - TypeScript
+  repos:
+    - react-hook-ts-poc
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/react-hook-ts-poc
+- slug: react-performance-tips
+  title: React Performance Tips
+  tier: 3
+  summary: Practical React performance exercises around memoization, rendering cost, and profiling-oriented thinking.
+  stack:
+    - React
+    - TypeScript
+  repos:
+    - react-performance-tips
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/react-performance-tips
+- slug: ritchie-workshop
+  title: Ritchie Workshop
+  tier: 3
+  summary: Workshop project for the Ritchie CLI ecosystem, focused on command formulas and automation patterns.
+  stack:
+    - Shell
+    - Ritchie CLI
+  repos:
+    - ritchie-workshop
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/ritchie-workshop
+- slug: simple-next
+  title: Simple Next
+  tier: 3
+  summary: Minimal Next.js starter used to explore routing, rendering, and deployment fundamentals.
+  stack:
+    - Next.js
+    - React
+  repos:
+    - simple-next
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/simple-next
+- slug: spring-animations
+  title: Spring Animations
+  tier: 3
+  summary: Animation experiments using spring dynamics to study more natural motion in interface transitions.
+  stack:
+    - React
+    - Framer Motion
+  repos:
+    - spring-animations
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/spring-animations
+    - label: Demo
+      url: https://spring-animations.vercel.app/
+  image: true
+- slug: storybook-class
+  title: Storybook Class
+  tier: 3
+  summary: Storybook learning project focused on documenting components with stories, controls, and isolated UI states.
+  stack:
+    - React
+    - Storybook
+    - TypeScript
+  repos:
+    - storybook-class
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/storybook-class
+- slug: tcc-catolica
+  title: TCC Catolica
+  tier: 3
+  summary: University final project from Catolica, preserved as an early milestone in the overall development timeline.
+  stack:
+    - HTML
+    - CSS
+    - JavaScript
+  repos:
+    - tcc-catolica
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/tcc-catolica
+- slug: tech-assessment-fe
+  title: Tech Assessment FE
+  tier: 3
+  summary: Frontend technical assessment exploring component composition and data-handling patterns in a smaller scope.
+  stack:
+    - React
+    - TypeScript
+  repos:
+    - tech-assessment-fe
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/tech-assessment-fe
+- slug: teste
+  title: Teste
+  tier: 3
+  summary: Sandbox repository used for quick experiments and small implementation spikes across technologies.
+  stack:
+    - Various
+  repos:
+    - teste
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/teste
+- slug: themis
+  title: Themis
+  tier: 3
+  summary: Domain-specific application exploring a judicial or governance-oriented interface and supporting flows.
+  stack:
+    - React
+    - TypeScript
+  repos:
+    - themis
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/themis
+- slug: todo
+  title: Todo
+  tier: 3
+  summary: Focused todo application used to practice CRUD interactions, state updates, and simple task workflows.
+  stack:
+    - React
+  repos:
+    - todo
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/todo
+- slug: twitter-bot
+  title: Twitter Bot
+  tier: 3
+  summary: Twitter automation bot exploring scheduled posting and API-driven engagement workflows.
+  stack:
+    - Node.js
+    - Twitter API
+  repos:
+    - twitter-bot
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/twitter-bot
+- slug: xalgo
+  title: XAlgo
+  tier: 3
+  summary: Algorithm and data structure exercises covering sorting, searching, and complexity-oriented practice.
+  stack:
+    - JavaScript
+    - TypeScript
+  repos:
+    - xalgo
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/xalgo
+- slug: yan-template
+  title: Yan Template
+  tier: 3
+  summary: Project template with an opinionated frontend tooling setup for starting new apps more quickly.
+  stack:
+    - React
+    - TypeScript
+    - Vite
+  repos:
+    - yan-template
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/yan-template

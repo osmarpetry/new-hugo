@@ -1,0 +1,12 @@
+title: Component preview — post row
+partial: components/post-row.html
+previewTag: ul
+previewClass: company-teaser-list home-post-list
+args:
+  title: Agile Software Development
+  url: /blog/agile/
+  date: "2025-01-15"
+  tags:
+    - agile
+    - project-management
+    - workflow

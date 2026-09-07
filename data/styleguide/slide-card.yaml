@@ -1,0 +1,10 @@
+title: Component preview — slide card
+partial: components/slide-card.html
+previewClass: slides-gallery-grid
+args:
+  slug: design-tokens
+  title: Design Tokens
+  description: Presentation about design tokens, shared through the Cubuca ritual of frontend developers.
+  topics:
+    - Design Tokens
+    - Frontend

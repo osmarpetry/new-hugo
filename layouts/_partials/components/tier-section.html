@@ -1,0 +1,46 @@
+{{- /*
+  A block of project cards, an optional text-only list, and an optional CTA.
+  Shared by the home page preview and the projects page.
+
+  args:
+    id, eyebrow, title, titleHref, description, listTitle, ctaUrl, ctaLabel (string)
+    projects, listProjects (slice) entries of data/projects.yaml
+*/ -}}
+<section class="tier-section" id="{{ .id }}">
+  {{- if or .eyebrow .title .description }}
+    <div class="section-heading">
+      {{- if .titleHref }}<a class="section-heading-link" href="{{ .titleHref }}">{{ end }}
+        {{- with .eyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}
+        {{- with .title }}<h2>{{ . }}</h2>{{ end }}
+        {{- with .description }}<p>{{ . }}</p>{{ end }}
+      {{- if .titleHref }}</a>{{ end }}
+    </div>
+  {{- end }}
+
+  {{- with .projects }}
+    <div class="project-grid">
+      {{- range . }}
+        <div
+          class="project-card-frame"
+          id="{{ .slug }}"
+          data-project-card="{{ .slug }}"
+          {{- with .repos }} data-project-aliases="{{ delimit . "," }}"{{ end }}
+        >
+          {{ partial "components/project-card.html" . }}
+        </div>
+      {{- end }}
+    </div>
+  {{- end }}
+
+  {{- with .listProjects }}
+    <ul class="company-teaser-list project-teaser-list" aria-label="{{ $.listTitle | default "More projects" }}">
+      {{- range . }}{{ partial "components/project-row.html" . }}{{ end }}
+    </ul>
+  {{- end }}
+
+  {{- if and .ctaUrl .ctaLabel }}
+    <div class="tier-section__cta">
+      <a class="action-link action-link--tier" href="{{ .ctaUrl }}">{{ .ctaLabel }}</a>
+    </div>
+  {{- end }}
+</section>

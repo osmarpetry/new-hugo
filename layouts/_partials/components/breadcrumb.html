@@ -1,0 +1,23 @@
+{{- /*
+  args:
+    trail    (slice) dicts of "name" and "url", rendered as links
+    current  (string) the last crumb, not a link
+    truncate (bool)  marquee the current crumb when it overflows
+*/ -}}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  {{- range .trail }}
+    <a class="breadcrumb__link" href="{{ .url }}">{{ .name }}</a>
+    <span class="breadcrumb__sep" aria-hidden="true">/</span>
+  {{- end }}
+  {{- with .current }}
+    {{- if $.truncate }}
+      <span
+        class="breadcrumb__current breadcrumb__current--truncate"
+        aria-label="{{ . }}"
+        title="{{ . }}"
+      ><span class="breadcrumb__current-text">{{ . }}</span></span>
+    {{- else }}
+      <span class="breadcrumb__current">{{ . }}</span>
+    {{- end }}
+  {{- end }}
+</nav>

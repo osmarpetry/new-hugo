@@ -1,0 +1,25 @@
+{{ define "main" }}
+  <section class="section">
+    <div class="container">
+      {{ partial "components/section-heading.html" (dict
+        "eyebrow" "Styleguide"
+        "title" .Title
+        "description" .Description
+        "level" "h1"
+      ) }}
+      <ul class="company-teaser-list styleguide-index" aria-label="Components">
+        {{- range .Pages.ByTitle }}
+          {{- $fixture := index hugo.Data.styleguide .Params.component }}
+          <li class="company-teaser-item">
+            <a class="company-teaser-item__link" href="{{ .RelPermalink }}">
+              <span class="company-teaser-item__name">{{ .Title }}</span>
+              <span class="company-teaser-item__meta">
+                <span class="company-teaser-item__count">{{ $fixture.partial }}</span>
+              </span>
+            </a>
+          </li>
+        {{- end }}
+      </ul>
+    </div>
+  </section>
+{{ end }}

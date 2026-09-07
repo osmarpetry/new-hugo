@@ -1,0 +1,76 @@
+{{ define "main" }}
+  {{ partial "components/hero.html" (dict
+    "title" .Title
+    "descriptionHtml" .Content
+    "image" "images/hero/osmar-hero.jpg"
+    "backgroundColor" "#203629"
+    "position" "left"
+    "loading" "eager"
+  ) }}
+
+  {{ partial "components/company-logos.html" (dict "companies" hugo.Data.companies) }}
+
+  <section class="section section-work" id="selected-work">
+    <div class="container">
+      {{- $projects := hugo.Data.projects }}
+      {{- $featured := slice }}
+      {{- range hugo.Data.home.featuredProjects }}
+        {{- with index (where $projects "slug" .) 0 }}{{ $featured = $featured | append . }}{{ end }}
+      {{- end }}
+      {{ partial "components/tier-section.html" (dict
+        "id" "tier-1-projects"
+        "eyebrow" "Independent work"
+        "title" "Projects, experiments, and assessments."
+        "titleHref" "#selected-work"
+        "description" "Selected self-directed builds kept separate from professional company work. The projects page preserves the tier order, but the intent here is independent exploration and implementation range."
+        "projects" $featured
+        "ctaUrl" "/projects/"
+        "ctaLabel" "See all independent projects"
+      ) }}
+    </div>
+  </section>
+
+  <section class="section section-home-slides" id="featured-slides">
+    <div class="container">
+      {{ partial "components/section-heading.html" (dict
+        "eyebrow" "Presentations"
+        "title" "Slides from talks, workshops, and seminars."
+        "description" "A selection of presentation decks from talks, workshops, and seminars I have given."
+      ) }}
+      <ul class="company-teaser-list home-slide-list" aria-label="Featured slides">
+        {{- $decks := hugo.Data.slides.all }}
+        {{- range hugo.Data.slides.featured }}
+          {{- with index (where $decks "slug" .) 0 }}
+            {{ partial "components/slide-row.html" . }}
+          {{- end }}
+        {{- end }}
+      </ul>
+      <div class="company-teaser-cta">
+        <a class="action-link action-link--tier" href="/slides/">See all presentations</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-home-posts" id="latest-posts">
+    <div class="container">
+      {{ partial "components/section-heading.html" (dict
+        "eyebrow" "Latest writing"
+        "title" "Recent posts from the blog."
+        "description" "Short previews from the blog, using the same fast-scanning list rhythm as the rest of the portfolio."
+      ) }}
+      <ul class="company-teaser-list home-post-list" aria-label="Latest posts">
+        {{- range first 4 (where site.RegularPages "Section" "posts") }}
+          {{ partial "components/post-row.html" (dict
+            "title" .Title
+            "url" .RelPermalink
+            "date" (.Date.Format "2006-01-02")
+            "tags" .Params.tags
+          ) }}
+        {{- end }}
+      </ul>
+      <div class="company-teaser-cta">
+        <a class="action-link action-link--tier" href="/blog/">Open the blog</a>
+      </div>
+    </div>
+  </section>
+{{ end }}

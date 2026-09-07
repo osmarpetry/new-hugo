@@ -1,0 +1,31 @@
+{{ define "main" }}
+  {{- $projects := hugo.Data.projects -}}
+  <section class="section section-tier-page" data-projects-page aria-label="Projects">
+    <div class="container">
+      <div class="section-heading">
+        {{ partial "components/breadcrumb.html" (dict
+          "trail" (slice (dict "name" "Home" "url" "/"))
+          "current" "Projects"
+        ) }}
+        <h1 id="projects-index-heading">{{ .Title }}</h1>
+        {{ .Content }}
+      </div>
+
+      {{ partial "components/tier-section.html" (dict
+        "id" "projects-catalog"
+        "projects" (where $projects "image" true)
+        "listProjects" (where $projects "image" "==" nil)
+        "listTitle" "Text-only project list"
+      ) }}
+    </div>
+  </section>
+
+  {{ partial "components/hero.html" (dict
+    "title" "About me"
+    "descriptionHtml" "<p>I'm a Luxembourgish-Brazilian engineer based in Luxembourg. I work best in frontend-focused full stack product environments where UI quality, backend integrations, testing, performance, and developer experience all need to hold together in production.</p><p>The strongest fit is product platform work across web and mobile: scheduling, admin surfaces, operational workflows, realtime behavior, and maintainable systems that other engineers can extend safely as the product grows.</p>"
+    "image" "images/hero/osmar-about.jpeg"
+    "backgroundColor" "#2a4639"
+    "position" "right"
+    "loading" "lazy"
+  ) }}
+{{ end }}

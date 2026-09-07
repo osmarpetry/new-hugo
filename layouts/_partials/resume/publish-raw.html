@@ -1,0 +1,9 @@
+{{- /*
+  Publishes content/resume.md verbatim at /resume.md.
+
+  github.com/osmarpetry/dns-cv fetches that URL, so the bytes must be the
+  markdown as authored — front matter free, comments included.
+*/ -}}
+{{- with os.ReadFile "content/resume.md" -}}
+  {{- (resources.FromString "resume.md" .).Publish -}}
+{{- end -}}

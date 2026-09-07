@@ -1,0 +1,14 @@
+title: Component preview — prose
+partial: components/prose.html
+previewClass: markdown-prose
+notes: Obsidian wikilinks resolve here. A missing target renders as a marker instead of a dead link.
+args:
+  markdown: |
+    ## Markdown renderer
+
+    Body copy with **bold**, `inline code` and a [plain link](/blog/).
+
+    - A wikilink to an existing post: [[agile|Agile Software Development]]
+    - A wikilink to a post that does not exist: [[javascript-generator|Generator]]
+
+    > Blockquotes, lists and tables all pick up the site stylesheet.

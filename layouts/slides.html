@@ -1,0 +1,19 @@
+{{ define "main" }}
+  <section class="section section-slides-page">
+    <div class="container">
+      <div class="section-heading">
+        {{ partial "components/breadcrumb.html" (dict
+          "trail" (slice (dict "name" "Home" "url" "/"))
+          "current" "Slides"
+        ) }}
+        <h1>{{ .Title }}</h1>
+        {{ .Content }}
+      </div>
+      <div class="slides-gallery-grid">
+        {{- range hugo.Data.slides.all }}
+          {{ partial "components/slide-card.html" . }}
+        {{- end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

@@ -1,0 +1,17 @@
+{
+  "name": "Osmar Petry",
+  "short_name": "Osmar Petry",
+  "description": "Portfolio, writing, slides and resume of Osmar Petry, Senior Software Engineer.",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "background_color": "#f7f3ed",
+  "theme_color": "#6c5a9a",
+  "icons": [
+    {
+      "src": "/assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

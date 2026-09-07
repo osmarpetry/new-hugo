@@ -4,6 +4,10 @@ on:
   pull_request:
   push:
     branches: [main]
+  # The auto-merge workflow dispatches this after it merges a Dependabot PR.
+  # A push made with GITHUB_TOKEN does not start a workflow run, so without this
+  # the merge would land on main and never deploy.
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -17,6 +21,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
     steps:
       - uses: actions/checkout@v6
 
@@ -57,3 +64,14 @@ jobs:
           name: playwright-report
           path: test-results
           retention-days: 7
+
+      # Last step on purpose: reaching it means hugo built, every e2e test passed
+      # and lychee found no broken link. Nothing ships that did not clear all three.
+      - name: Deploy to Cloudflare Pages
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=new-hugo --branch=main
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

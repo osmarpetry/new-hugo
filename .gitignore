@@ -8,3 +8,6 @@ playwright-report/
 *.log
 .env
 .env.*
+
+# wrangler pages dev writes its local state here
+.wrangler/

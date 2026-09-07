@@ -155,25 +155,32 @@ component in the styleguide.
 
 `npm run check:links` runs lychee over the built site: 3000 links, 0 errors.
 
-## 7. CI/CD, Netlify and dependabot
+## 7. CI/CD, Cloudflare Pages and dependabot
 
 Present in this repo:
 
-- **`netlify.toml`** — `command = "hugo --gc --minify"`, `publish = "public"`,
-  and `HUGO_VERSION = "0.165.0"` in `[build.environment]`. Netlify needs the
-  version pinned in an env var; without it the build image picks whatever Hugo
-  it ships with, which is how a green local build turns red there.
 - **`.github/workflows/ci.yml`** — installs the pinned Hugo, builds, runs
-  Playwright, then lychee.
+  Playwright, then lychee, then deploys to Cloudflare Pages. The deploy is the
+  last step on purpose: reaching it means all three passed, so nothing ships
+  that did not clear them. It is skipped on pull requests.
+- **`.github/workflows/dependabot-auto-merge.yml`** — squash-merges a dependabot
+  PR once `ci` reports success, then dispatches `ci` on `main`. The dispatch is
+  not optional: a push made with `GITHUB_TOKEN` does not start a workflow run,
+  so without it the merge would land and never deploy.
 - **`.github/dependabot.yml`** — npm (the single devDependency) and
   github-actions, monthly.
 
+Hosting is **Cloudflare Pages, Direct Upload** (project `new-hugo`, served at
+`new-hugo-eka.pages.dev` and on the apex). Cloudflare never builds this repo;
+GitHub Actions does, and uploads `public/`. Direct Upload is a one-way door —
+a project created this way cannot be converted to git integration later. That
+was the deliberate trade for making CI the real gate, since git integration
+deploys on push without waiting for it.
+
 The catch worth stating: **dependabot cannot bump Hugo.** Hugo is not an npm
-package, so its version is pinned by hand in three places that must move
-together — `.dx.json`, `netlify.toml`, `.github/workflows/ci.yml`. Automating
-that means Renovate or a manual check. For automerge behaviour on the
-dependabot PRs that do exist, see
-<https://carlosbecker.com/posts/dependabot-automerge>.
+package, so its version is pinned by hand in two places that must move
+together — `.dx.json` and `.github/workflows/ci.yml`. Automating that means
+Renovate or a manual check.
 
 Note that the **old repo's CI still points at the Gatsby build** and will fail
 until it is updated or retired there.

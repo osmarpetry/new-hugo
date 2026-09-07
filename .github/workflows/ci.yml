@@ -14,8 +14,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  # Same version as .dx.json and netlify.toml. Dependabot cannot bump Hugo, so
-  # these three move together by hand.
+  # Same version as .dx.json. Dependabot cannot bump Hugo, so these two move
+  # together by hand.
   HUGO_VERSION: 0.165.0
 
 jobs:

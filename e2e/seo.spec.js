@@ -82,3 +82,22 @@ test.describe("GA4 analytics", () => {
     await context.close();
   });
 });
+
+const CF_BEACON_TOKEN = "9d4bfafb14ae426c8f76c2ace6327cb0";
+
+test.describe("Cloudflare Web Analytics", () => {
+  test("installs the beacon with this site's token", async ({ page }) => {
+    await page.route(/https:\/\/static\.cloudflareinsights\.com\/.*/, (route) =>
+      route.abort()
+    );
+    await page.goto("/");
+
+    const beacon = page.locator(
+      'script[src="https://static.cloudflareinsights.com/beacon.min.js"]'
+    );
+    await expect(beacon).toHaveCount(1);
+    expect(JSON.parse(await beacon.getAttribute("data-cf-beacon")).token).toBe(
+      CF_BEACON_TOKEN
+    );
+  });
+});

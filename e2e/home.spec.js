@@ -71,3 +71,46 @@ test.describe("Home", () => {
     ).not.toHaveCount(0);
   });
 });
+
+test.describe("Image weight", () => {
+  test("serves every company logo optimized, not as a full-size original", async ({
+    page,
+    request,
+  }) => {
+    await page.goto("/");
+    const sources = await page
+      .locator(".company-item__logo")
+      .evaluateAll((imgs) => imgs.map((i) => i.getAttribute("src")));
+    expect(sources.length).toBeGreaterThan(5);
+
+    for (const src of sources) {
+      const res = await request.get(src);
+      expect(res.status(), src).toBe(200);
+      const type = res.headers()["content-type"];
+      // SVG is already vector; everything else must be a modern raster format.
+      if (type.includes("svg")) continue;
+      expect(type, src).toMatch(/image\/(webp|avif)/);
+      // The strip renders at max-height 2rem. Anything over this budget is a
+      // full-resolution original being shrunk by the browser.
+      const bytes = (await res.body()).length;
+      expect(bytes, `${src} is ${Math.round(bytes / 1024)} KiB`).toBeLessThan(
+        12 * 1024
+      );
+    }
+  });
+
+  test("marks the LCP hero image as high priority", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.locator("img.hero-media__image")).toHaveAttribute(
+      "fetchpriority",
+      "high"
+    );
+  });
+
+  test("leaves the lazy footer hero at default priority", async ({ page }) => {
+    await page.goto("/projects/");
+    const hero = page.locator("img.hero-media__image");
+    await expect(hero).toHaveAttribute("loading", "lazy");
+    expect(await hero.getAttribute("fetchpriority")).toBeNull();
+  });
+});

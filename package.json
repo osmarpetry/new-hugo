@@ -6,8 +6,10 @@
     "dev": "hugo server",
     "build": "hugo --gc --minify",
     "test:e2e": "playwright test",
-    "check:links": "hugo --gc --minify && lychee --offline --no-progress --include-fragments --root-dir \"$PWD/public\" public",
-    "build:resume-pdf": "node scripts/build-resume-pdf.mjs"
+    "lint:links": "lychee --offline --no-progress --include-fragments --root-dir \"$PWD/public\" public",
+    "check:links": "npm run build && npm run lint:links",
+    "build:resume-pdf": "node scripts/build-resume-pdf.mjs",
+    "build:all": "npm run build:resume-pdf && npm run build && npm run lint:links"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0"

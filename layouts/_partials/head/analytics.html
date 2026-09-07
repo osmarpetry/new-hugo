@@ -22,3 +22,18 @@
     })();
   </script>
 {{- end -}}
+
+{{- /*
+  Cloudflare Web Analytics. Cookieless and beacon-based, so a crawler that never
+  runs JavaScript never lands in the numbers — which is the whole reason it is
+  here alongside GA4. Unlike the gtag above it is not gated on Do Not Track:
+  it identifies no one, and gating it would reintroduce the undercount it exists
+  to avoid.
+*/ -}}
+{{- if and hugo.IsProduction site.Params.cloudflareAnalytics -}}
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "{{ site.Params.cloudflareAnalytics }}"}'
+  ></script>
+{{- end -}}

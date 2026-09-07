@@ -1,0 +1,22 @@
+{{- /* Text-only project row. Context is one entry of data/projects.yaml. */ -}}
+{{- $primary := "" -}}
+{{- range .links }}
+  {{- if and (not $primary) (strings.Contains .url "github.com") }}{{ $primary = .url }}{{ end }}
+{{- end }}
+{{- if not $primary }}{{ with (index .links 0) }}{{ $primary = .url }}{{ end }}{{ end }}
+<li
+  class="company-teaser-item project-teaser-item"
+  id="{{ .slug }}"
+  data-project-card="{{ .slug }}"
+  {{- with .repos }} data-project-aliases="{{ delimit . "," }}"{{ end }}
+>
+  <a class="company-teaser-item__link project-teaser-item__link" href="{{ $primary }}" target="_blank" rel="noreferrer">
+    <span class="company-teaser-item__name project-teaser-item__name">{{ delimit .repos " + " }}</span>
+    <span class="company-teaser-item__meta project-teaser-item__meta">
+      <span class="company-teaser-item__role project-teaser-item__summary">{{ .summary }}</span>
+      {{- range .stack }}
+        <span class="company-teaser-item__count project-teaser-item__chip">{{ . }}</span>
+      {{- end }}
+    </span>
+  </a>
+</li>

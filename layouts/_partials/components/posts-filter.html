@@ -1,0 +1,21 @@
+{{- /*
+  Tag filter. Every chip is a link to a real tag page, so filtering needs no
+  JavaScript and each filtered view is its own indexable URL.
+
+  args:
+    chips  (slice)  dicts of "name", "url" and "active"
+    status (string) the summary line on the right
+*/ -}}
+<div class="posts-filter">
+  <details class="posts-filter__details" open>
+    <summary class="posts-filter__summary">
+      <span>Filter by tag</span>
+      <span class="posts-filter__status">{{ .status }}</span>
+    </summary>
+    <div class="posts-filter__chips">
+      {{- range .chips }}
+        <a class="posts-filter__chip{{ if .active }} is-active{{ end }}" href="{{ .url }}">{{ .name }}</a>
+      {{- end }}
+    </div>
+  </details>
+</div>

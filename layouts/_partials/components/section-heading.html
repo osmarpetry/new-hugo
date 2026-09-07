@@ -1,0 +1,23 @@
+{{- /*
+  args:
+    eyebrow     (string) small label above the title
+    title       (string)
+    description (string)
+    level       (string) "h1" or "h2", default "h2"
+    id          (string) id on the heading
+    href        (string) turns the title into a link
+*/ -}}
+{{- $level := .level | default "h2" -}}
+{{- /* html/template escapes a tag name that comes from a variable, so the
+       heading element is assembled explicitly. */ -}}
+<div class="section-heading">
+  {{- with .eyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}
+  {{ printf "<%s%s>" $level (cond (eq "" (.id | default "")) "" (printf " id=%q" .id)) | safeHTML }}
+    {{- with .href -}}
+      <a class="section-title-link" href="{{ . }}">{{ $.title }}</a>
+    {{- else -}}
+      {{ .title }}
+    {{- end -}}
+  {{ printf "</%s>" $level | safeHTML }}
+  {{- with .description }}<p>{{ . }}</p>{{ end }}
+</div>

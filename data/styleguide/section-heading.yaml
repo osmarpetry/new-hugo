@@ -1,0 +1,6 @@
+title: Component preview — section heading
+partial: components/section-heading.html
+args:
+  eyebrow: Latest writing
+  title: Recent posts from the blog.
+  description: Short previews from the blog, using the same fast-scanning list rhythm as the rest of the portfolio.

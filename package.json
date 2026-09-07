@@ -1,0 +1,15 @@
+{
+  "name": "portifolio-hugo",
+  "private": true,
+  "description": "Osmar Petry portfolio — Hugo SSG. npm is only the e2e test runner; the site itself has no JS dependencies.",
+  "scripts": {
+    "dev": "hugo server",
+    "build": "hugo --gc --minify",
+    "test:e2e": "playwright test",
+    "check:links": "hugo --gc --minify && lychee --offline --no-progress --include-fragments --root-dir \"$PWD/public\" public",
+    "build:resume-pdf": "node scripts/build-resume-pdf.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  }
+}

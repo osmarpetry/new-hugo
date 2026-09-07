@@ -1,0 +1,13 @@
+{{/*
+  One page per fixture in data/styleguide. Drop a YAML file there and the
+  component gets its own URL — no template or content file to add.
+*/}}
+{{ range $name, $fixture := hugo.Data.styleguide }}
+  {{ $.AddPage (dict
+    "kind" "page"
+    "path" $name
+    "title" $name
+    "params" (dict "component" $name)
+    "content" (dict "mediaType" "text/markdown" "value" (or $fixture.notes ""))
+  ) }}
+{{ end }}

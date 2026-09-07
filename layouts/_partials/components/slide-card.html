@@ -1,0 +1,38 @@
+{{- /*
+  Deck card for the slides gallery. Context is one entry of data/slides.yaml
+  `all`; the PDF and the thumbnail are derived from the slug.
+*/ -}}
+{{- $thumb := printf "images/slides/%s.jpg" .slug -}}
+<article class="slide-card">
+  <a
+    class="slide-card__link"
+    href="/assets/pdfs/slides/{{ .slug }}.pdf"
+    target="_blank"
+    rel="noreferrer"
+    title="Open &quot;{{ .title }}&quot; PDF in a new tab"
+  >
+    <div class="slide-card__thumb-wrap">
+      {{- with resources.Get $thumb }}
+        {{ partial "components/picture.html" (dict
+          "src" $thumb
+          "alt" (printf "Thumbnail for %s" $.title)
+          "imgClass" "slide-card__thumb"
+          "sizes" "(max-width: 700px) 100vw, 320px"
+          "widths" (slice 320 640)
+        ) }}
+      {{- else }}
+        <img class="slide-card__thumb" src="/assets/images/project-placeholder.svg" alt="" loading="lazy" width="320" height="180" />
+      {{- end }}
+    </div>
+    <div class="slide-card__body">
+      <h3 class="slide-card__title">{{ .title }}</h3>
+      {{- with .description }}<p class="slide-card__description">{{ . }}</p>{{ end }}
+      <div class="slide-card__meta">
+        {{- range first 2 (.topics | default slice) }}
+          <span class="slide-card__topic">{{ . }}</span>
+        {{- end }}
+      </div>
+    </div>
+    <span class="slide-card__external" aria-hidden="true">↗</span>
+  </a>
+</article>

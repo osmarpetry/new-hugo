@@ -1,0 +1,23 @@
+{{- /*
+  Compact post row used in the home "latest writing" list.
+
+  args:
+    title (string)
+    url   (string) permalink
+    date  (string) ISO date, e.g. "2025-01-15"
+    tags  (slice)  at most three are shown
+*/ -}}
+{{- $date := time.AsTime .date -}}
+<li class="company-teaser-item home-post-item">
+  <a class="company-teaser-item__link home-post-item__link" href="{{ .url }}">
+    <span class="company-teaser-item__name home-post-item__name">{{ .title }}</span>
+    <span class="company-teaser-item__meta home-post-item__meta">
+      <span class="company-teaser-item__role home-post-item__date">
+        <time datetime="{{ $date.Format "2006-01-02" }}">{{ $date.Format "Jan 2, 2006" }}</time>
+      </span>
+      {{- range first 3 (.tags | default slice) }}
+        <span class="company-teaser-item__count home-post-item__chip">{{ . }}</span>
+      {{- end }}
+    </span>
+  </a>
+</li>

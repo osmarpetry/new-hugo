@@ -1,0 +1,13 @@
+title: Component preview — post card
+partial: components/post-card.html
+previewTag: ul
+previewClass: posts-index-list
+args:
+  title: Agile Software Development
+  url: /blog/agile/
+  date: "2025-01-15"
+  description: Comprehensive guide to Agile methodologies, values, and practices for modern software development teams.
+  tags:
+    - agile
+    - project-management
+    - workflow

@@ -1,0 +1,25 @@
+version: 2
+updates:
+  # The site itself has no runtime dependencies: npm here is the Playwright
+  # test runner and nothing else. Hugo's own version is NOT covered by
+  # dependabot (Hugo is not an npm package) and is pinned by hand in
+  # .dx.json, netlify.toml and .github/workflows/ci.yml.
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      npm:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      github_actions:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]

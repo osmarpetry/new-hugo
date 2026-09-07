@@ -1,0 +1,24 @@
+{{- /*
+  Compact slide row used in the home "presentations" list. The PDF path is
+  derived from the slug, so data files never repeat asset paths.
+
+  args:
+    slug   (string) file name of the deck under static/assets/pdfs/slides
+    title  (string)
+    topics (slice)  at most two are shown
+*/ -}}
+<li class="company-teaser-item home-slide-item">
+  <a
+    class="company-teaser-item__link home-slide-item__link"
+    href="/assets/pdfs/slides/{{ .slug }}.pdf"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <span class="company-teaser-item__name home-slide-item__name">{{ .title }}</span>
+    <span class="company-teaser-item__meta home-slide-item__meta">
+      {{- range first 2 (.topics | default slice) }}
+        <span class="company-teaser-item__count home-slide-item__chip">{{ . }}</span>
+      {{- end }}
+    </span>
+  </a>
+</li>

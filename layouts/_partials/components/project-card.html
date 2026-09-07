@@ -1,0 +1,36 @@
+{{- /*
+  Project card. Context is one entry of data/projects.yaml. The cover image is
+  looked up from the slug, so the data file holds no paths.
+*/ -}}
+{{- $cover := printf "images/screenshots/projects/%s/cover.png" .slug -}}
+<article class="project-card">
+  <div class="project-media">
+    {{- with resources.Get $cover }}
+      {{ partial "components/picture.html" (dict
+        "src" $cover
+        "alt" (printf "Cover image for %s." $.slug)
+        "class" "project-media__image-wrap"
+        "imgClass" "project-media__image"
+        "sizes" "(max-width: 700px) 100vw, 33vw"
+        "widths" (slice 480 768 1200)
+      ) }}
+    {{- else }}
+      <img src="/assets/images/project-placeholder.svg" alt="" loading="lazy" decoding="async" width="1600" height="1000" />
+    {{- end }}
+  </div>
+  <div class="project-body">
+    {{- with .type }}<p class="project-type">{{ . }}</p>{{ end }}
+    <h3>{{ .title }}</h3>
+    <p class="project-summary">{{ .summary }}</p>
+    {{- with .stack }}
+      <p class="stack-line"><span>Stack</span>{{ delimit . " · " }}</p>
+    {{- end }}
+    {{- with .links }}
+      <div class="project-links">
+        {{- range . }}
+          <a href="{{ .url }}" target="_blank" rel="noreferrer">{{ .label }}</a>
+        {{- end }}
+      </div>
+    {{- end }}
+  </div>
+</article>

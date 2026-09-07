@@ -1,0 +1,3 @@
+{{ define "main" }}
+  {{ partial "posts/index.html" (dict "page" . "posts" .Pages "active" .Data.Term) }}
+{{ end }}

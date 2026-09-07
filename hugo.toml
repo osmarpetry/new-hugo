@@ -1,0 +1,85 @@
+baseURL = 'https://osmarpetry.dev/'
+locale = 'en-US'
+title = 'Osmar Petry'
+enableRobotsTXT = true
+
+# Posts are authored in Obsidian under content/posts, but the public URLs the
+# Gatsby site established are /blog/<slug>/ and must not change.
+[permalinks]
+  [permalinks.page]
+    posts = '/blog/:contentbasename/'
+  [permalinks.section]
+    posts = '/blog/'
+
+[params]
+  description = "Luxembourgish-Brazilian Senior Software Engineer with 10+ years building and scaling web and mobile products across EU and US distributed teams. Full-stack delivery across TypeScript and Python: product interfaces in React, Vue and Next.js, backend services with Node.js, FastAPI and Temporal, and the testing, CI/CD and observability practices that keep them reliable in production."
+  jobTitle = 'Senior Software Engineer'
+  email = 'osmarpetry@gmail.com'
+  github = 'https://github.com/osmarpetry'
+  linkedin = 'https://www.linkedin.com/in/osmarpetry'
+  linktree = 'https://linktree.osmarpetry.dev'
+  resumePdf = '/assets/resume/resume-osmarpetry.pdf'
+  themeColor = '#6c5a9a'
+  backgroundColor = '#f7f3ed'
+  googleAnalytics = 'G-3STVN66PY5'
+
+# The navbar renders from this menu, so a link exists in exactly one place.
+[[menus.main]]
+  name = 'Projects'
+  url = '/projects/'
+  weight = 10
+[[menus.main]]
+  name = 'Resume'
+  url = '/resume/'
+  weight = 20
+[[menus.main]]
+  name = 'Blog'
+  url = '/blog/'
+  weight = 30
+[[menus.main]]
+  name = 'Slides'
+  url = '/slides/'
+  weight = 40
+[[menus.main]]
+  name = 'Linktree'
+  url = 'https://linktree.osmarpetry.dev'
+  weight = 50
+  [menus.main.params]
+    external = true
+
+[imaging]
+  resampleFilter = 'lanczos'
+  # Quality is set per format: a single number means different things to each
+  # encoder, and the top-level key is deprecated for exactly that reason.
+  [imaging.avif]
+    compression = 'lossy'
+    quality = 60
+    hint = 'photo'
+  [imaging.webp]
+    compression = 'lossy'
+    quality = 80
+    hint = 'photo'
+  [imaging.jpeg]
+    quality = 82
+
+[markup]
+  # Chroma highlights at build time; the old site shipped highlight.js to the
+  # browser to do the same job. Colours live in assets/css/chroma.css.
+  [markup.highlight]
+    noClasses = false
+    lineNos = false
+    codeFences = true
+    guessSyntax = true
+    tabWidth = 2
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.goldmark.parser]
+    wrapStandAloneImageWithinParagraph = false
+
+[taxonomies]
+  tag = 'tags'
+
+# The Gatsby site published the feed at /rss.xml and other sites link to it.
+[outputFormats.RSS]
+  mediaType = 'application/rss+xml'
+  baseName = 'rss'

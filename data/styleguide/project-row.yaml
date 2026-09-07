@@ -1,0 +1,14 @@
+title: Component preview — project row
+partial: components/project-row.html
+previewTag: ul
+previewClass: company-teaser-list project-teaser-list
+args:
+  slug: hello-go
+  summary: Go warm-up repository kept as a reference for language basics.
+  repos:
+    - hello-go
+  stack:
+    - Go
+  links:
+    - label: GitHub
+      url: https://github.com/osmarpetry/hello-go

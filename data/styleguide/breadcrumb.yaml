@@ -1,0 +1,10 @@
+title: Component preview — breadcrumb
+partial: components/breadcrumb.html
+args:
+  trail:
+    - name: Home
+      url: /
+    - name: Blog
+      url: /blog/
+  current: agile
+  truncate: true

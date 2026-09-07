@@ -1,0 +1,24 @@
+{{- /*
+  GA4. Loaded only in production builds and only when the visitor has not asked
+  not to be tracked, which is what gatsby-plugin-google-gtag's respectDNT did.
+*/ -}}
+{{- if and hugo.IsProduction site.Params.googleAnalytics -}}
+  {{- $id := site.Params.googleAnalytics -}}
+  <script>
+    (function () {
+      var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+
+      if (dnt === "1" || dnt === "yes") return;
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', '{{ $id }}', { anonymize_ip: true });
+
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id={{ $id }}';
+      document.head.appendChild(s);
+    })();
+  </script>
+{{- end -}}

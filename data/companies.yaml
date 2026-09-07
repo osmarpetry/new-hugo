@@ -1,0 +1,61 @@
+# Company logos shown on the home page. Only entries with a logo file are kept.
+- slug: cyber
+  name: Cyberr
+  logo: company-logos/cyber.svg
+  alt: Cyberr logo
+  width: 84
+  height: 26
+- slug: attend
+  name: Attend
+  logo: company-logos/attend-dark-inv.png
+  alt: Attend logo
+  width: 1909
+  height: 378
+- slug: x-team
+  name: X-Team
+  logo: company-logos/x-team.svg
+  alt: X-Team logo
+  width: 92
+  height: 32
+- slug: luizalabs
+  name: Luizalabs
+  logo: company-logos/luizalabs.svg
+  alt: Magazine Luiza wordmark used for Luizalabs
+  width: 200
+  height: 26
+- slug: zup
+  name: Zup
+  logo: company-logos/zup.png
+  alt: Zup icon
+  width: 384
+  height: 131
+- slug: ng-informatica
+  name: NG Informatica
+  logo: company-logos/ng-informatica.png
+  alt: NG Informatica logo
+  width: 200
+  height: 76
+- slug: coblue
+  name: CoBlue OKR
+  logo: company-logos/coblue-new.jpg
+  alt: CoBlue OKR logo
+  width: 900
+  height: 327
+- slug: totvs
+  name: TOTVS
+  logo: company-logos/totvs.png
+  alt: TOTVS logo
+  width: 1548
+  height: 454
+- slug: envolve-labs
+  name: Envolve Labs
+  logo: company-logos/envolve-labs-dark.png
+  alt: Envolve Labs logo
+  width: 504
+  height: 198
+- slug: catolica
+  name: Catolica SC
+  logo: company-logos/catolica.png
+  alt: Catolica SC logo
+  width: 1376
+  height: 458

@@ -1,0 +1,60 @@
+{{- /*
+  The blog index. /blog/ and every /tags/<tag>/ page are the same view with a
+  different post set, which is what keeps the filter DRY.
+
+  args:
+    page   (page)  the page being rendered, for the breadcrumb
+    posts  (pages) posts to list
+    active (string) current tag, empty for the unfiltered index
+*/ -}}
+{{- $active := .active -}}
+{{- $posts := .posts.ByDate.Reverse -}}
+<section class="section section-posts-index" data-posts-index>
+  <div class="container">
+    <div class="section-heading">
+      {{ partial "components/breadcrumb.html" (dict
+        "trail" (slice (dict "name" "Home" "url" "/") (dict "name" "Blog" "url" "/blog/"))
+        "current" (or $active "All Posts")
+      ) }}
+      <h1 id="posts-index-heading">Blog.</h1>
+      <p>
+        Notes and articles about code, product thinking, and experiments
+        published from this site. They start life in my personal Obsidian vault —
+        Portuguese notes and drafts that I reworked, with help from GPT, into
+        posts with a beginning, a middle and an end. Kept here as my own memory,
+        with many more notes still to come.
+      </p>
+    </div>
+
+    {{- $chips := slice (dict "name" "All posts" "url" "/blog/" "active" (not $active)) }}
+    {{- range $name, $taxonomy := site.Taxonomies.tags }}
+      {{- $chips = $chips | append (dict
+        "name" $name
+        "url" $taxonomy.Page.RelPermalink
+        "active" (eq $name $active)
+      ) }}
+    {{- end }}
+    {{ partial "components/posts-filter.html" (dict
+      "chips" $chips
+      "status" (cond (ne $active "")
+        (printf "%d post%s in %s" (len $posts) (cond (eq (len $posts) 1) "" "s") $active)
+        (printf "%d tags" (len site.Taxonomies.tags)))
+    ) }}
+
+    <ul class="posts-index-list">
+      {{- range $posts }}
+        {{ partial "components/post-card.html" (dict
+          "title" .Title
+          "url" .RelPermalink
+          "date" (.Date.Format "2006-01-02")
+          "tags" .Params.tags
+          "description" .Description
+        ) }}
+      {{- end }}
+    </ul>
+
+    {{- if not $posts }}
+      <p class="posts-index-empty">No posts matched the selected tag.</p>
+    {{- end }}
+  </div>
+</section>

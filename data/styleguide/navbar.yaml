@@ -1,0 +1,3 @@
+title: Component preview — navbar
+partial: shell/navbar.html
+notes: Takes no arguments; the links come from [[menus.main]] in hugo.toml.

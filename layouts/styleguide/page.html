@@ -1,0 +1,33 @@
+{{ define "main" }}
+  {{- $fixture := index hugo.Data.styleguide .Params.component -}}
+  {{- $tag := $fixture.previewTag | default "div" -}}
+  <section class="section">
+    <div class="container">
+      {{ partial "components/section-heading.html" (dict
+        "eyebrow" "Component"
+        "title" .Title
+        "description" $fixture.notes
+        "level" "h1"
+      ) }}
+
+      {{- /* Same reason as in section-heading: a variable tag name would be escaped. */ -}}
+      {{ printf `<%s class="styleguide-preview %s">` $tag ($fixture.previewClass | default "") | safeHTML }}
+        {{ partial $fixture.partial $fixture.args }}
+      {{ printf "</%s>" $tag | safeHTML }}
+
+      <h2>Arguments</h2>
+      <pre class="styleguide-args"><code>{{ $fixture.args | jsonify (dict "indent" "  ") }}</code></pre>
+
+      <h2>Source</h2>
+      <div class="styleguide-source">
+        {{- with os.ReadFile (printf "layouts/_partials/%s" $fixture.partial) }}
+          {{ transform.Highlight . "go-html-template" "noClasses=true" }}
+        {{- else }}
+          {{ errorf "styleguide: partial not found: %s" $fixture.partial }}
+        {{- end }}
+      </div>
+
+      <p><a class="action-link action-link--tier" href="{{ .Parent.RelPermalink }}">Back to the styleguide</a></p>
+    </div>
+  </section>
+{{ end }}

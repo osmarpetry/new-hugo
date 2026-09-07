@@ -1,0 +1,11 @@
+# Fixture = the arguments the component is called with. The styleguide renders
+# the component with exactly this dict, so the page cannot drift from the code.
+title: Component preview — hero
+partial: components/hero.html
+args:
+  title: Osmar Petry
+  descriptionHtml: "<p><strong>Luxembourgish-Brazilian Senior Software Engineer</strong> with <strong>10+ years</strong> building and scaling web and mobile products.</p>"
+  image: images/hero/osmar-hero.jpg
+  backgroundColor: "#203629"
+  position: left
+  loading: lazy

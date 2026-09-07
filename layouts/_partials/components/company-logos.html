@@ -1,0 +1,26 @@
+{{- /*
+  Company logo strip. Logos are plain <img>: several are SVG, which Hugo does
+  not process, and all of them are already tiny.
+
+  args:
+    companies (slice) dicts of "name", "logo", "alt", "width", "height"
+*/ -}}
+<section class="section section-companies" id="companies">
+  <div class="container">
+    <p class="eyebrow eyebrow--center">Some companies I already worked with</p>
+    <div class="companies-grid">
+      {{- range .companies }}
+        <div class="company-item" title="{{ .name }}">
+          <img
+            class="company-item__logo"
+            src="/assets/images/{{ .logo }}"
+            alt="{{ .alt }}"
+            loading="lazy"
+            width="{{ .width }}"
+            height="{{ .height }}"
+          />
+        </div>
+      {{- end }}
+    </div>
+  </div>
+</section>

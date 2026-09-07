@@ -1,0 +1,23 @@
+{{- /*
+  Post card for the blog index and the tag pages.
+
+  args:
+    title, url, description (string)
+    date (string) ISO date
+    tags (slice)
+*/ -}}
+{{- $date := time.AsTime .date -}}
+<li class="posts-index-item">
+  <a class="posts-index-card" href="{{ .url }}">
+    <div class="posts-index-card__meta">
+      <time datetime="{{ $date.Format "2006-01-02" }}">{{ $date.Format "Jan 2, 2006" }}</time>
+    </div>
+    <h2 class="posts-index-card__title">{{ .title }}</h2>
+    {{- with .tags }}
+      <div class="posts-index-card__tags" aria-label="Post tags">
+        {{- range . }}<span class="posts-index-card__tag">{{ . }}</span>{{ end }}
+      </div>
+    {{- end }}
+    {{- with .description }}<p class="posts-index-card__description">{{ . }}</p>{{ end }}
+  </a>
+</li>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale }}">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body>
+    <div id="top" class="site-wrapper">
+      <a class="skip-link" href="#main">Skip to content</a>
+      <header class="site-header">{{ partial "shell/navbar.html" . }}</header>
+      <main id="main">{{ block "main" . }}{{ end }}</main>
+      {{ partial "shell/footer.html" . }}
+    </div>
+    {{- with resources.Get "js/site.js" }}
+      {{- $js := . | js.Build (dict "minify" true) | fingerprint }}
+      <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+    {{- end }}
+  </body>
+</html>

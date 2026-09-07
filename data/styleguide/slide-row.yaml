@@ -1,0 +1,10 @@
+title: Component preview — slide row
+partial: components/slide-row.html
+previewTag: ul
+previewClass: company-teaser-list home-slide-list
+args:
+  slug: testes-em-integrao-contnua
+  title: Testing in Continuous Integration
+  topics:
+    - Testing
+    - CI/CD

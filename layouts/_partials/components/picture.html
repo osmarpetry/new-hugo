@@ -1,0 +1,61 @@
+{{- /*
+  Responsive image. Emits AVIF + WebP srcsets from a single source file in
+  assets/, so every image on the site is optimized by construction.
+
+  args:
+    src       (string) path under assets/, e.g. "images/hero/osmar-hero.jpg"
+    alt       (string) empty string for decorative images
+    class     (string) class on the wrapping <picture>
+    imgClass  (string) class on the <img>
+    loading   (string) "eager" or "lazy", default "lazy"
+    sizes     (string) sizes attribute, default "100vw"
+    widths    (slice)  candidate widths, default 480/768/1200/1600
+*/ -}}
+{{- $src := .src -}}
+{{- $alt := .alt | default "" -}}
+{{- $class := .class | default "" -}}
+{{- $imgClass := .imgClass | default "" -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $sizes := .sizes | default "100vw" -}}
+{{- $widths := .widths | default (slice 480 768 1200 1600) -}}
+{{- with resources.Get $src -}}
+  {{- $original := . -}}
+  {{- $usable := slice -}}
+  {{- range $widths -}}
+    {{- if le . $original.Width -}}
+      {{- $usable = $usable | append . -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $usable -}}
+    {{- $usable = slice $original.Width -}}
+  {{- end -}}
+  {{- $avif := slice -}}
+  {{- $webp := slice -}}
+  {{- $fallback := "" -}}
+  {{- range $usable -}}
+    {{- $a := $original.Resize (printf "%dx avif" .) -}}
+    {{- $w := $original.Resize (printf "%dx webp" .) -}}
+    {{- $avif = $avif | append (printf "%s %dw" $a.RelPermalink $a.Width) -}}
+    {{- $webp = $webp | append (printf "%s %dw" $w.RelPermalink $w.Width) -}}
+    {{- $fallback = $w -}}
+  {{- end -}}
+  {{- /* The class goes on a block-level wrapper: <picture> is inline, so a
+         stylesheet sizing the wrapper with height: 100% would not apply. */ -}}
+  <div{{ with $class }} class="{{ . }}"{{ end }}>
+  <picture>
+    <source type="image/avif" srcset="{{ delimit $avif ", " }}" sizes="{{ $sizes }}" />
+    <img
+      {{ with $imgClass }}class="{{ . }}" {{ end }}src="{{ $fallback.RelPermalink }}"
+      srcset="{{ delimit $webp ", " }}"
+      sizes="{{ $sizes }}"
+      width="{{ $fallback.Width }}"
+      height="{{ $fallback.Height }}"
+      loading="{{ $loading }}"
+      decoding="async"
+      alt="{{ $alt }}"
+    />
+  </picture>
+  </div>
+{{- else -}}
+  {{- errorf "picture: asset not found: %s" $src -}}
+{{- end -}}

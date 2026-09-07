@@ -22,6 +22,8 @@ enableRobotsTXT = true
   themeColor = '#6c5a9a'
   backgroundColor = '#f7f3ed'
   googleAnalytics = 'G-3STVN66PY5'
+  # Public beacon token, meant to ship in the HTML. Not a secret.
+  cloudflareAnalytics = '9d4bfafb14ae426c8f76c2ace6327cb0'
 
 # The navbar renders from this menu, so a link exists in exactly one place.
 [[menus.main]]

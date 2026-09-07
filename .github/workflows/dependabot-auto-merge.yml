@@ -18,10 +18,13 @@ permissions:
 
 jobs:
   merge:
+    # Deliberately not gated on workflow_run.actor: that is whoever triggered the
+    # run, which stops being Dependabot the moment anyone pushes a fixup commit
+    # to the PR. The author of the PR is what actually matters, and it is checked
+    # below once the PR is resolved.
     if: >-
       github.event.workflow_run.event == 'pull_request' &&
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.actor.login == 'dependabot[bot]'
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Merge the pull request that ci just proved green
@@ -35,10 +38,13 @@ jobs:
           # workflow_run carries a SHA, not a PR number. Match on it rather than
           # trusting event.workflow_run.pull_requests, which comes back empty in
           # more cases than the docs let on.
-          pr=$(gh pr list --state open --json number,headRefOid \
-                 --jq "map(select(.headRefOid == \"$HEAD_SHA\")) | .[0].number // empty")
+          pr=$(gh pr list --state open --json number,headRefOid,author \
+                 --jq "map(select(.headRefOid == \"$HEAD_SHA\"
+                              and (.author.login == \"app/dependabot\"
+                                or .author.login == \"dependabot[bot]\")))
+                       | .[0].number // empty")
           if [ -z "$pr" ]; then
-            echo "No open PR at $HEAD_SHA — nothing to merge."
+            echo "No open Dependabot PR at $HEAD_SHA — nothing to merge."
             echo "merged=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi

@@ -17,6 +17,7 @@ enableRobotsTXT = true
   email = 'osmarpetry@gmail.com'
   github = 'https://github.com/osmarpetry'
   linkedin = 'https://www.linkedin.com/in/osmarpetry'
+  linkedinRecommendations = 'https://www.linkedin.com/in/osmarpetry/details/recommendations/'
   linktree = 'https://linktree.osmarpetry.dev'
   resumePdf = '/assets/resume/resume-osmarpetry.pdf'
   themeColor = '#6c5a9a'

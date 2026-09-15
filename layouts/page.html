@@ -28,6 +28,14 @@
           </a>
         {{- end }}
         {{ partial "components/prose.html" (dict "markdown" .RenderShortcodes) }}
+        {{- if $isResume }}
+          <aside class="resume-recommendations">
+            <p>
+              I keep at least one recommendation per role, written by the people I worked with.
+              <a href="{{ site.Params.linkedinRecommendations }}" target="_blank" rel="noreferrer">Read them on LinkedIn</a>.
+            </p>
+          </aside>
+        {{- end }}
       </div>
     </div>
   </section>

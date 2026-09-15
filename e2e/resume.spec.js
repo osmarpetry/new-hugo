@@ -20,6 +20,21 @@ test.describe("Resume", () => {
     expect(pdf.status()).toBe(200);
   });
 
+  test("links to the LinkedIn recommendations, off the resume markdown", async ({
+    page,
+  }) => {
+    await page.goto("/resume/");
+    const rec = page.locator(".resume-recommendations");
+    await expect(rec).toBeVisible();
+    await expect(rec).toContainText("at least one recommendation per role");
+    const link = rec.locator("a");
+    await expect(link).toHaveAttribute(
+      "href",
+      "https://www.linkedin.com/in/osmarpetry/details/recommendations/"
+    );
+    await expect(link).toHaveAttribute("target", "_blank");
+  });
+
   /** github.com/osmarpetry/dns-cv reads this file, so it must stay verbatim. */
   test("publishes the raw markdown at /resume.md for the DNS CV", async ({
     request,
@@ -29,5 +44,8 @@ test.describe("Resume", () => {
     const body = await res.text();
     expect(body.startsWith("# Osmar Petry")).toBe(true);
     expect(body).toContain('<ul class="resume-contact">');
+    // The recommendations block is layout-only, so it must not leak into the
+    // markdown the PDF and the DNS CV read verbatim.
+    expect(body).not.toContain("details/recommendations");
   });
 });
